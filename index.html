@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mehdi Khodabakhshi | Software Engineer</title>
+    <meta name="description" content="Software Engineer, PHP, Laravel, Python, Linux Infrastructure & Healthcare Solutions.">
     
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,11 +23,11 @@
             font-family: system-ui, -apple-system, sans-serif;
         }
 
-        /* پس‌زمینه متحرک که خواسته بودی */
+        /* پس‌زمینه متحرک کهکشانی */
         .bg-gradient-animate {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: radial-gradient(circle at 50% 50%, #1f005c, #0b001a, #050505);
+            background: radial-gradient(circle at 50% 50%, #1a0033, #0a001a, #050505);
             background-size: 200% 200%;
             animation: gradientMove 15s ease infinite;
             z-index: -1;
@@ -40,26 +41,28 @@
 
         /* استایل شیشه‌ای (Glassmorphism) */
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 1.5rem;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
         
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        /* انیمیشن چرخشی دور عکس */
+        /* انیمیشن چرخش دور عکس */
         .spin-border {
             animation: spin 3s linear infinite;
         }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* Splash Screen */
+        /* اسپلش اسکرین */
         #splash {
             position: fixed; inset: 0; background: #050505;
             display: flex; align-items: center; justify-content: center;
@@ -84,7 +87,8 @@
         <section class="flex flex-col items-center text-center mb-16 animate-item">
             <!-- Profile Image -->
             <div class="relative w-36 h-36 rounded-full p-1 glass-card mb-6">
-                <img src="profile.jpg" alt="Mehdi Khodabakhshi" class="w-full h-full rounded-full object-cover relative z-10">
+                <!-- توجه: عکس خودت رو با اسم profile.jpg کنار این فایل قرار بده -->
+                <img src="profile.jpg" alt="Mehdi Khodabakhshi" class="w-full h-full rounded-full object-cover relative z-10" onerror="this.src='https://ui-avatars.com/api/?name=Mehdi+Khodabakhshi&background=0D8ABC&color=fff&size=256'">
                 <div class="absolute inset-0 rounded-full border-2 border-transparent border-t-purple-500 spin-border z-0"></div>
             </div>
 
@@ -95,54 +99,63 @@
 
             <!-- Skills Tags -->
             <div class="flex flex-wrap justify-center gap-2 mb-10">
-                <span class="px-3 py-1 glass-card text-xs text-gray-300">PHP</span>
-                <span class="px-3 py-1 glass-card text-xs text-gray-300">Laravel</span>
-                <span class="px-3 py-1 glass-card text-xs text-gray-300">Python</span>
-                <span class="px-3 py-1 glass-card text-xs text-gray-300">Linux Infrastructure</span>
-                <span class="px-3 py-1 glass-card text-xs text-gray-300">SEO</span>
-                <span class="px-3 py-1 glass-card text-xs text-gray-300">Healthcare IT</span>
+                <span class="px-3 py-1 glass-card text-xs text-gray-200">PHP</span>
+                <span class="px-3 py-1 glass-card text-xs text-gray-200">Laravel</span>
+                <span class="px-3 py-1 glass-card text-xs text-gray-200">Python</span>
+                <span class="px-3 py-1 glass-card text-xs text-gray-200">Linux Infrastructure</span>
+                <span class="px-3 py-1 glass-card text-xs text-gray-200">UI/UX</span>
+                <span class="px-3 py-1 glass-card text-xs text-gray-200">SEO</span>
+                <span class="px-3 py-1 glass-card text-xs text-gray-200">Healthcare Solutions</span>
             </div>
 
             <!-- Social Links -->
             <div class="w-full space-y-4 max-w-md mx-auto">
                 <a href="https://instagram.com/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-card hover:border-pink-500/50 hover:text-pink-400 group">
                     <div class="flex items-center gap-4"><i data-lucide="instagram" class="group-hover:scale-110 transition-transform"></i> <span class="font-medium">Instagram</span></div>
+                    <i data-lucide="chevron-right" class="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-transform"></i>
                 </a>
+                
                 <a href="https://t.me/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-card hover:border-blue-500/50 hover:text-blue-400 group">
                     <div class="flex items-center gap-4"><i data-lucide="send" class="group-hover:scale-110 transition-transform"></i> <span class="font-medium">Telegram</span></div>
+                    <i data-lucide="chevron-right" class="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-transform"></i>
                 </a>
-                <a href="https://wa.me/YOURNUMBER" target="_blank" class="flex items-center justify-between p-4 glass-card hover:border-green-500/50 hover:text-green-400 group">
-                    <div class="flex items-center gap-4"><i data-lucide="message-circle" class="group-hover:scale-110 transition-transform"></i> <span class="font-medium">WhatsApp</span></div>
-                </a>
+                
                 <a href="https://github.com/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-card hover:border-white/50 group">
                     <div class="flex items-center gap-4"><i data-lucide="github" class="group-hover:scale-110 transition-transform"></i> <span class="font-medium">GitHub</span></div>
+                    <i data-lucide="chevron-right" class="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+
+                <!-- جایگذاری شماره واتس‌اپ -->
+                <a href="https://wa.me/989000000000" target="_blank" class="flex items-center justify-between p-4 glass-card hover:border-green-500/50 hover:text-green-400 group">
+                    <div class="flex items-center gap-4"><i data-lucide="message-circle" class="group-hover:scale-110 transition-transform"></i> <span class="font-medium">WhatsApp</span></div>
+                    <i data-lucide="chevron-right" class="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section class="mb-16 glass-card p-8 animate-item">
-            <h3 class="text-2xl font-bold mb-4 flex items-center gap-2"><i data-lucide="user" class="text-purple-400"></i> About Me</h3>
-            <p class="text-gray-300 leading-relaxed text-justify text-sm md:text-base">
-                I am a passionate Software Engineer with expertise in backend development, server infrastructure, and healthcare IT solutions. With years of experience working with PHP, Laravel, and Python, I build scalable systems and manage robust Linux environments. My goal is to bridge the gap between complex logic and seamless user experiences.
-            </p>
-        </section>
-
-        <!-- Experience Section -->
+        <!-- Services / What I do -->
         <section class="mb-16 animate-item">
-            <h3 class="text-2xl font-bold mb-6 flex items-center gap-2"><i data-lucide="briefcase" class="text-purple-400"></i> Experience</h3>
-            <div class="space-y-6 border-l-2 border-purple-500/30 pl-6 ml-3">
-                <div class="relative">
-                    <div class="absolute -left-[31px] top-1 w-4 h-4 bg-purple-500 rounded-full shadow-[0_0_10px_#a855f7]"></div>
-                    <h4 class="text-lg font-bold text-white">Senior Software Engineer</h4>
-                    <p class="text-purple-300 text-sm">Healthcare Solutions</p>
-                    <span class="text-xs text-gray-500 mt-1 block">2021 - Present</span>
+            <h3 class="text-2xl font-bold mb-6 text-center">What I Do</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="glass-card p-6">
+                    <i data-lucide="code-2" class="text-purple-400 mb-4 w-8 h-8"></i>
+                    <h4 class="text-lg font-bold mb-2">Backend Development</h4>
+                    <p class="text-gray-400 text-sm">Building scalable APIs and core logic using PHP, Laravel, and Python.</p>
                 </div>
-                <div class="relative">
-                    <div class="absolute -left-[31px] top-1 w-4 h-4 bg-gray-500 rounded-full"></div>
-                    <h4 class="text-lg font-bold text-white">Backend Developer (Laravel)</h4>
-                    <p class="text-gray-400 text-sm">Web Agency</p>
-                    <span class="text-xs text-gray-500 mt-1 block">2018 - 2021</span>
+                <div class="glass-card p-6">
+                    <i data-lucide="server" class="text-blue-400 mb-4 w-8 h-8"></i>
+                    <h4 class="text-lg font-bold mb-2">Linux & Infrastructure</h4>
+                    <p class="text-gray-400 text-sm">Deploying and managing robust Linux servers and DevOps workflows.</p>
+                </div>
+                <div class="glass-card p-6">
+                    <i data-lucide="activity" class="text-green-400 mb-4 w-8 h-8"></i>
+                    <h4 class="text-lg font-bold mb-2">Healthcare Solutions</h4>
+                    <p class="text-gray-400 text-sm">Designing secure and efficient IT systems for the healthcare industry.</p>
+                </div>
+                <div class="glass-card p-6">
+                    <i data-lucide="bar-chart" class="text-pink-400 mb-4 w-8 h-8"></i>
+                    <h4 class="text-lg font-bold mb-2">UI/UX & SEO</h4>
+                    <p class="text-gray-400 text-sm">Optimizing search engine rankings and crafting user-friendly interfaces.</p>
                 </div>
             </div>
         </section>
@@ -150,26 +163,29 @@
         <!-- Contact / Footer -->
         <section class="text-center animate-item mt-20">
             <h3 class="text-xl font-bold mb-6">Let's Work Together</h3>
-            <div class="flex justify-center gap-4 mb-10">
-                <a href="mailto:your-email@gmail.com" class="p-4 glass-card rounded-full hover:scale-110"><i data-lucide="mail"></i></a>
-                <a href="tel:+989000000000" class="p-4 glass-card rounded-full hover:scale-110"><i data-lucide="phone"></i></a>
+            <div class="flex justify-center gap-6 mb-10">
+                <!-- ایمیل و شماره تلفن خودت رو اینجا جایگزین کن -->
+                <a href="mailto:your_email@gmail.com" class="p-4 glass-card rounded-full hover:scale-110 hover:text-purple-400 transition-all"><i data-lucide="mail"></i></a>
+                <a href="tel:+989000000000" class="p-4 glass-card rounded-full hover:scale-110 hover:text-purple-400 transition-all"><i data-lucide="phone"></i></a>
             </div>
-            <p class="text-gray-600 text-sm">© <span id="year"></span> Mehdi Khodabakhshi. All rights reserved.</p>
+            <p class="text-gray-500 text-sm">© <span id="year"></span> Mehdi Khodabakhshi. All rights reserved.</p>
         </section>
 
     </main>
 
     <!-- Scripts -->
     <script>
-        // 1. اجرای آیکون‌های Lucide
+        // فعال‌سازی آیکون‌ها
         lucide.createIcons();
+        
+        // تنظیم سال خودکار در فوتر
         document.getElementById("year").innerText = new Date().getFullYear();
 
-        // 2. انیمیشن‌های GSAP (Splash Screen و ورود المان‌ها)
+        // انیمیشن‌های حرفه‌ای هنگام لود صفحه
         window.onload = () => {
             const tl = gsap.timeline();
 
-            // مخفی کردن اسپلش اسکرین بعد از 2 ثانیه
+            // 1. محو شدن اسپلش اسکرین
             tl.to("#splash", {
                 opacity: 0,
                 duration: 0.8,
@@ -181,14 +197,16 @@
                 }
             });
 
-            // نمایش محتوای اصلی با افکت Stagger (یکی یکی میان بالا)
+            // 2. ظاهر شدن نرم کل صفحه
             tl.to("#main-content", { opacity: 1, duration: 0.1 });
+            
+            // 3. انیمیشن بالا اومدن بخش‌ها به صورت ترتیبی
             tl.from(".animate-item", {
-                y: 40,
+                y: 50,
                 opacity: 0,
                 duration: 0.8,
-                stagger: 0.2, // فاصله زمانی بین هر المان
-                ease: "back.out(1.7)"
+                stagger: 0.2,
+                ease: "back.out(1.5)"
             });
         };
     </script>
