@@ -15,8 +15,8 @@
 
     <style>
         :root {
-            --glass-bg: rgba(15, 15, 20, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(10, 10, 15, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.05);
         }
 
         body {
@@ -35,7 +35,7 @@
             background-size: 100% 200%;
         }
 
-        /* نور پس‌زمینه */
+        /* نور متحرک */
         .ambient-light {
             position: fixed; top: -10%; left: -10%; width: 60vw; height: 60vw;
             background: radial-gradient(circle, rgba(147,51,234,0.15) 0%, transparent 60%);
@@ -47,36 +47,74 @@
             100% { transform: translateY(50px) translateX(30px); }
         }
 
-        /* کلاس شیشه‌ای پایه */
+        /* کلاس شیشه‌ای پایه صفحه اصلی */
         .glass-panel {
-            background: var(--glass-bg);
+            background: rgba(20, 20, 25, 0.4);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 1.5rem; transition: all 0.3s ease;
         }
 
-        /* دکمه‌های شناور بالا */
-        .top-btn {
+        /* ================= انیمیشن آیکون همبرگری 3 خط ================= */
+        .hamburger-btn {
             background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%; padding: 0.75rem; cursor: pointer;
-            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; width: 48px; height: 48px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+            cursor: pointer; transition: all 0.3s ease; z-index: 60;
         }
-        .top-btn:hover { background: rgba(255, 255, 255, 0.1); transform: scale(1.05); }
+        
+        .hamburger-btn:hover { background: rgba(255, 255, 255, 0.1); transform: scale(1.05); }
 
-        /* انیمیشن دور عکس */
-        .profile-ring {
-            background: conic-gradient(from 0deg, #9333ea, #3b82f6, #ec4899, #9333ea);
-            animation: spin 4s linear infinite;
+        .hamburger-line {
+            width: 20px; height: 2px; background-color: #ffffff;
+            border-radius: 2px; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-origin: center;
         }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* سایدبار (منوی کشویی از راست) */
+        /* حالت باز شدن منو (تبدیل به X) */
+        .hamburger-btn.open .hamburger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger-btn.open .hamburger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger-btn.open .hamburger-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ================= استایل شیک و مینیمال منوی کناری ================= */
         #sidebar {
-            box-shadow: -10px 0 40px rgba(0,0,0,0.5);
-            border-right: none; border-radius: 2rem 0 0 2rem;
-            border-left: 1px solid var(--glass-border);
+            background: rgba(5, 5, 8, 0.85); backdrop-filter: blur(30px);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: -20px 0 50px rgba(0,0,0,0.7);
         }
+
+        .chic-link {
+            position: relative; padding: 1rem 0;
+            display: flex; align-items: center; gap: 1rem;
+            color: #a1a1aa; transition: all 0.3s ease;
+            overflow: hidden; opacity: 0; /* برای انیمیشن ورود */
+        }
+
+        .chic-link:hover { color: #ffffff; padding-right: 0.75rem; }
+
+        .chic-link::before {
+            content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+            width: 3px; height: 0; background: linear-gradient(to bottom, #a855f7, #3b82f6);
+            border-radius: 4px; transition: all 0.3s ease;
+        }
+
+        .chic-link:hover::before { height: 70%; }
+        
+        /* دکمه پریمیوم ثبت پروژه */
+        .premium-btn {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(59, 130, 246, 0.2));
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            box-shadow: 0 4px 20px rgba(147, 51, 234, 0.15);
+        }
+        .premium-btn:hover {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.4));
+            box-shadow: 0 4px 30px rgba(147, 51, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .profile-ring { background: conic-gradient(from 0deg, #9333ea, #3b82f6, #ec4899, #9333ea); animation: spin 4s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="antialiased selection:bg-purple-500/30 pb-20">
@@ -85,21 +123,24 @@
     <audio id="bg-music" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
     <!-- دکمه موزیک (بالا سمت چپ) -->
-    <button id="music-toggle" class="fixed top-5 left-5 z-40 top-btn opacity-0">
-        <i id="music-icon" data-lucide="volume-x" class="w-6 h-6 text-gray-400"></i>
+    <button id="music-toggle" class="fixed top-5 left-5 z-40 top-btn opacity-0 hover:bg-white/10" style="width: 48px; height: 48px; padding: 0;">
+        <i id="music-icon" data-lucide="volume-x" class="w-5 h-5 text-gray-400"></i>
     </button>
 
-    <!-- دکمه منوی همبرگری (بالا سمت راست) -->
-    <button id="hamburger-btn" class="fixed top-5 right-5 z-50 top-btn opacity-0 shadow-[0_0_15px_rgba(168,85,247,0.3)]">
-        <i id="hamburger-icon" data-lucide="menu" class="w-6 h-6 text-white"></i>
+    <!-- دکمه منوی همبرگری 3 خط (بالا سمت راست) -->
+    <button id="hamburger-btn" class="fixed top-5 right-5 hamburger-btn opacity-0 shadow-[0_0_15px_rgba(0,0,0,0.3)]">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
     </button>
 
     <div class="cosmic-bg"></div>
     <div class="ambient-light"></div>
 
+    <!-- ================= محتوای اصلی سایت ================= -->
     <main class="relative z-10 max-w-lg mx-auto px-5 pt-24">
         
-        <!-- ================= بخش ۱: پروفایل ================= -->
+        <!-- پروفایل -->
         <section class="flex flex-col items-center text-center mb-10 animate-section opacity-0">
             <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full p-1 mb-6">
                 <div class="absolute inset-0 rounded-full profile-ring opacity-80"></div>
@@ -107,12 +148,9 @@
                 <img src="profile.jpg" alt="Mehdi Khodabakhshi" class="w-full h-full rounded-full object-cover relative z-10 border-2 border-black" onerror="this.src='https://ui-avatars.com/api/?name=Mehdi+Khodabakhshi&background=0D8ABC&color=fff&size=256'">
             </div>
 
-            <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-500 mb-2">
-                مهدی خدابخشی
-            </h1>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-500 mb-2">مهدی خدابخشی</h1>
             <h2 class="text-lg font-en tracking-widest text-purple-400 mb-6 uppercase">Software Engineer</h2>
 
-            <!-- تخصص‌ها -->
             <div class="flex flex-wrap justify-center gap-2 mb-4 w-full px-2">
                 <span class="bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-sm font-medium">👨‍💻 مهندس نرم‌افزار</span>
                 <span class="bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-sm font-medium font-en tracking-wide" dir="ltr">⚙️ PHP • Laravel • Python</span>
@@ -122,12 +160,12 @@
             </div>
         </section>
 
-        <!-- ================= بخش ۲: لینک‌های شبکه‌های اجتماعی (در صفحه اصلی) ================= -->
-        <section class="flex flex-col gap-4 w-full animate-section opacity-0 mb-16">
+        <!-- لینک‌های شبکه‌های اجتماعی -->
+        <section class="flex flex-col gap-4 w-full animate-section opacity-0 mb-10">
             
-            <a href="https://instagram.com/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-panel hover:bg-pink-600/20 border-white/10 hover:border-pink-500/50 hover:shadow-[0_0_20px_rgba(236,72,153,0.2)] transition-all group">
+            <a href="https://instagram.com/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-panel hover:bg-pink-600/10 border-white/5 hover:border-pink-500/50 hover:shadow-[0_0_20px_rgba(236,72,153,0.15)] transition-all group">
                 <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 group-hover:scale-110 transition-transform">
+                    <div class="w-12 h-12 rounded-full bg-pink-500/10 flex items-center justify-center text-pink-400 group-hover:scale-110 transition-transform">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                     </div>
                     <span class="font-bold text-lg text-white">اینستاگرام</span>
@@ -135,9 +173,9 @@
                 <i data-lucide="chevron-left" class="w-5 h-5 text-gray-500 group-hover:text-pink-400 group-hover:-translate-x-1 transition-all"></i>
             </a>
 
-            <a href="https://t.me/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-panel hover:bg-blue-600/20 border-white/10 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] transition-all group">
+            <a href="https://t.me/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-panel hover:bg-blue-600/10 border-white/5 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all group">
                 <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+                    <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
                     </div>
                     <span class="font-bold text-lg text-white">تلگرام</span>
@@ -145,9 +183,9 @@
                 <i data-lucide="chevron-left" class="w-5 h-5 text-gray-500 group-hover:text-blue-400 group-hover:-translate-x-1 transition-all"></i>
             </a>
 
-            <a href="https://wa.me/989000000000" target="_blank" class="flex items-center justify-between p-4 glass-panel hover:bg-green-600/20 border-white/10 hover:border-green-500/50 hover:shadow-[0_0_20px_rgba(34,197,94,0.2)] transition-all group">
+            <a href="https://wa.me/989000000000" target="_blank" class="flex items-center justify-between p-4 glass-panel hover:bg-green-600/10 border-white/5 hover:border-green-500/50 hover:shadow-[0_0_20px_rgba(34,197,94,0.15)] transition-all group">
                 <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform">
+                    <div class="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform">
                         <i data-lucide="message-circle" class="w-6 h-6"></i>
                     </div>
                     <span class="font-bold text-lg text-white">واتس‌اپ</span>
@@ -155,7 +193,7 @@
                 <i data-lucide="chevron-left" class="w-5 h-5 text-gray-500 group-hover:text-green-400 group-hover:-translate-x-1 transition-all"></i>
             </a>
 
-            <a href="https://github.com/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-panel hover:bg-gray-600/30 border-white/10 hover:border-gray-400/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all group">
+            <a href="https://github.com/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-panel hover:bg-gray-600/20 border-white/5 hover:border-gray-400/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all group">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-full bg-gray-500/20 flex items-center justify-center text-gray-300 group-hover:scale-110 transition-transform">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
@@ -169,72 +207,63 @@
 
     </main>
 
-    <!-- ================= سایدبار (منوی دسته‌بندی‌ها) ================= -->
+    <!-- ================= سایدبار شیک و مینیمال ================= -->
     
-    <!-- لایه تاریک‌کننده پس‌زمینه -->
-    <div id="overlay" class="fixed inset-0 bg-black/70 backdrop-blur-md z-40 opacity-0 invisible transition-all duration-300"></div>
+    <div id="overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-500"></div>
 
-    <!-- منوی کشویی سمت راست -->
-    <aside id="sidebar" class="fixed top-0 right-0 w-80 max-w-[85vw] h-full glass-panel z-50 p-6 pt-24 transform translate-x-full border-y-0 flex flex-col justify-start">
+    <aside id="sidebar" class="fixed top-0 right-0 w-80 max-w-[85vw] h-full z-50 p-8 pt-28 transform translate-x-full flex flex-col justify-start">
         
-        <h3 class="font-bold text-xl mb-6 text-center text-white border-b border-white/10 pb-4">منوی سایت</h3>
+        <!-- عنوان منو با افکت گرادیان -->
+        <h3 class="font-bold text-2xl mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">فهرست سایت</h3>
         
-        <div class="flex flex-col gap-4">
-            <!-- درباره من -->
-            <!-- لینک href="#" رو می‌تونی بعدا به صفحه دلخواهت تغییر بدی -->
-            <a href="#" class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 hover:bg-purple-600/20 border border-white/5 hover:border-purple-500/50 transition-all group">
-                <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
-                    <i data-lucide="user" class="w-6 h-6"></i>
-                </div>
-                <span class="font-bold text-lg">درباره من</span>
+        <!-- لینک‌های مینیمال -->
+        <div class="flex flex-col gap-2 border-r border-white/10 pr-4">
+            
+            <a href="#" class="chic-link group">
+                <i data-lucide="user" class="w-5 h-5 text-gray-500 group-hover:text-purple-400 transition-colors"></i>
+                <span class="font-medium text-lg tracking-wide">درباره من</span>
             </a>
 
-            <!-- پروژه‌ها -->
-            <a href="#" class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 hover:bg-blue-600/20 border border-white/5 hover:border-blue-500/50 transition-all group">
-                <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
-                    <i data-lucide="folder-git-2" class="w-6 h-6"></i>
-                </div>
-                <span class="font-bold text-lg">پروژه‌ها</span>
+            <a href="#" class="chic-link group">
+                <i data-lucide="layers" class="w-5 h-5 text-gray-500 group-hover:text-blue-400 transition-colors"></i>
+                <span class="font-medium text-lg tracking-wide">پروژه‌های من</span>
             </a>
 
-            <!-- خدمات / مهارت‌ها -->
-            <a href="#" class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 hover:bg-pink-600/20 border border-white/5 hover:border-pink-500/50 transition-all group">
-                <div class="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 group-hover:scale-110 transition-transform">
-                    <i data-lucide="sparkles" class="w-6 h-6"></i>
-                </div>
-                <span class="font-bold text-lg">خدمات من</span>
+            <a href="#" class="chic-link group">
+                <i data-lucide="sparkles" class="w-5 h-5 text-gray-500 group-hover:text-pink-400 transition-colors"></i>
+                <span class="font-medium text-lg tracking-wide">خدمات و مهارت‌ها</span>
             </a>
 
-            <!-- ثبت پروژه (تماس) -->
-            <!-- این دکمه رو مستقیم وصل کردم به واتس‌اپت که کارفرما سریع پیام بده -->
-            <a href="https://wa.me/989000000000" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 transition-all group mt-4 shadow-[0_5px_20px_rgba(147,51,234,0.4)]">
-                <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                    <i data-lucide="rocket" class="w-6 h-6"></i>
-                </div>
-                <span class="font-bold text-lg text-white">ثبت پروژه جدید</span>
+            <a href="#" class="chic-link group">
+                <i data-lucide="file-text" class="w-5 h-5 text-gray-500 group-hover:text-green-400 transition-colors"></i>
+                <span class="font-medium text-lg tracking-wide">رزومه (CV)</span>
             </a>
+
         </div>
+
+        <!-- دکمه ویژه ثبت پروژه -->
+        <div class="mt-auto pb-10">
+            <a href="https://wa.me/989000000000" target="_blank" class="premium-btn flex items-center justify-center gap-3 w-full py-4 rounded-2xl text-white transition-all group">
+                <i data-lucide="rocket" class="w-5 h-5 group-hover:-translate-y-1 transition-transform"></i>
+                <span class="font-bold text-lg">ثبت پروژه جدید</span>
+            </a>
+            <p class="text-center text-xs text-gray-500 mt-4 font-en tracking-widest">© MEHDI KHODABAKHSHI</p>
+        </div>
+
     </aside>
 
     <!-- اسکریپت‌ها -->
     <script>
-        // ۱. رندر آیکون‌ها
         lucide.createIcons();
 
-        // ۲. انیمیشن باز شدن صفحه
+        // ۱. انیمیشن باز شدن صفحه اصلی
         window.onload = () => {
             gsap.to("#music-toggle", { opacity: 1, duration: 1, delay: 0.2 });
             gsap.to("#hamburger-btn", { opacity: 1, duration: 1, delay: 0.3 });
-            gsap.to(".animate-section", { 
-                y: -20, 
-                opacity: 1, 
-                duration: 0.8, 
-                stagger: 0.15, 
-                ease: "power3.out" 
-            });
+            gsap.to(".animate-section", { y: -20, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power3.out" });
         };
 
-        // ۳. موزیک اتوماتیک با اولین کلیک/اسکرول
+        // ۲. موزیک
         const bgMusic = document.getElementById("bg-music");
         const musicToggleBtn = document.getElementById("music-toggle");
         const musicIcon = document.getElementById("music-icon");
@@ -242,7 +271,7 @@
 
         const startMusic = () => {
             if (!isPlaying) {
-                bgMusic.volume = 0.3; // صدای نرم
+                bgMusic.volume = 0.3;
                 bgMusic.play().then(() => {
                     isPlaying = true;
                     musicIcon.setAttribute("data-lucide", "music");
@@ -255,12 +284,10 @@
             document.removeEventListener("scroll", startMusic);
             document.removeEventListener("touchstart", startMusic);
         };
-
         document.addEventListener("click", startMusic);
         document.addEventListener("scroll", startMusic);
         document.addEventListener("touchstart", startMusic);
 
-        // دکمه دستی موزیک
         musicToggleBtn.addEventListener("click", (e) => {
             e.stopPropagation();
             if (isPlaying) {
@@ -278,31 +305,37 @@
             lucide.createIcons();
         });
 
-        // ۴. منطق سایدبار و منوی همبرگری
+        // ۳. منطق منوی همبرگری و سایدبار (با انیمیشن‌های شیک GSAP)
         const hamburgerBtn = document.getElementById('hamburger-btn');
-        const hamburgerIcon = document.getElementById('hamburger-icon');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
+        const chicLinks = document.querySelectorAll('.chic-link');
         let isMenuOpen = false;
 
         const toggleMenu = () => {
             if (!isMenuOpen) {
                 // باز کردن منو
+                hamburgerBtn.classList.add('open');
                 overlay.classList.remove('invisible');
                 overlay.classList.add('opacity-100');
-                gsap.to(sidebar, { x: 0, duration: 0.5, ease: "power3.out" });
-                hamburgerIcon.setAttribute("data-lucide", "x");
-                hamburgerBtn.classList.add("bg-white/10");
+                
+                // آوردن سایدبار
+                gsap.to(sidebar, { x: 0, duration: 0.6, ease: "power4.out" });
+                
+                // انیمیشن آبشاری متن‌های داخل منو
+                gsap.fromTo(chicLinks, 
+                    { x: 30, opacity: 0 }, 
+                    { x: 0, opacity: 1, duration: 0.5, stagger: 0.1, delay: 0.2, ease: "power2.out" }
+                );
             } else {
                 // بستن منو
+                hamburgerBtn.classList.remove('open');
                 overlay.classList.remove('opacity-100');
-                setTimeout(() => overlay.classList.add('invisible'), 300);
-                gsap.to(sidebar, { x: "100%", duration: 0.4, ease: "power3.in" });
-                hamburgerIcon.setAttribute("data-lucide", "menu");
-                hamburgerBtn.classList.remove("bg-white/10");
+                setTimeout(() => overlay.classList.add('invisible'), 500);
+                
+                gsap.to(sidebar, { x: "100%", duration: 0.5, ease: "power3.inOut" });
             }
             isMenuOpen = !isMenuOpen;
-            lucide.createIcons();
         };
 
         hamburgerBtn.addEventListener('click', (e) => {
