@@ -4,219 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مهدی خدابخشی | مهندس نرم‌افزار</title>
-    <meta name="description" content="توسعه‌دهنده بک‌اند، متخصص لاراول، پایتون و زیرساخت لینوکس">
     
-    <!-- فونت زیبای وزیرمتن برای فارسی -->
+    <!-- فونت زیبای وزیرمتن -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS & Lucide & GSAP -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <style>
         body {
-            background-color: #050505;
-            color: #ffffff;
-            overflow-x: hidden;
-            font-family: 'Vazirmatn', sans-serif; /* اعمال فونت فارسی */
-            margin: 0;
+            background-color: #050505; color: #ffffff;
+            overflow-x: hidden; font-family: 'Vazirmatn', sans-serif; margin: 0;
         }
 
-        /* پس‌زمینه متحرک */
         .bg-gradient-animate {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: radial-gradient(circle at 50% 50%, #1a0033, #0a001a, #050505);
-            background-size: 200% 200%;
-            animation: gradientMove 15s ease infinite;
-            z-index: -1;
+            background-size: 200% 200%; animation: gradientMove 15s ease infinite; z-index: -1;
         }
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* افکت شیشه‌ای مدرن */
         .glass-card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1.5rem;
+            background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem;
             transition: all 0.3s ease;
         }
-        
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-3px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        /* انیمیشن چرخشی دور عکس */
+        .glass-card:hover { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); }
         .spin-border { animation: spin 3s linear infinite; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="antialiased selection:bg-purple-500/30 pb-20">
+<body class="antialiased selection:bg-purple-500/30 pb-32 relative">
 
-    <!-- موزیک پس‌زمینه -->
-    <audio id="bg-music" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bg-music" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
-    <!-- دکمه شناور کنترل موزیک (سمت چپ قرار گرفت چون سایت راست‌چینه) -->
-    <button id="music-toggle" class="fixed top-6 left-6 z-50 glass-card p-3 rounded-full transition-transform hover:scale-110 opacity-0">
+    <button id="music-toggle" class="fixed top-6 left-6 z-50 glass-card p-3 rounded-full opacity-0">
         <i id="music-icon" data-lucide="volume-x" class="w-5 h-5 text-gray-500"></i>
     </button>
 
     <div class="bg-gradient-animate"></div>
 
-    <!-- محتوای اصلی سایت -->
     <main class="relative z-10 max-w-2xl mx-auto px-6 pt-16">
         
-        <!-- بخش هیرو و پروفایل -->
+        <!-- هیرو -->
         <section class="flex flex-col items-center text-center mb-16 animate-item opacity-0">
             <div class="relative w-36 h-36 rounded-full p-1 glass-card mb-6 shadow-[0_0_30px_rgba(168,85,247,0.2)]">
                 <img src="profile.jpg" alt="مهدی خدابخشی" class="w-full h-full rounded-full object-cover relative z-10" onerror="this.src='https://ui-avatars.com/api/?name=Mehdi+Khodabakhshi&background=0D8ABC&color=fff&size=256'">
                 <div class="absolute inset-0 rounded-full border-2 border-transparent border-t-purple-500 spin-border z-0"></div>
             </div>
-
-            <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-2">
-                مهدی خدابخشی
-            </h1>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-2">مهدی خدابخشی</h1>
             <h2 class="text-xl text-purple-400 font-medium mb-8">مهندس نرم‌افزار</h2>
 
-            <!-- مهارت‌ها -->
             <div class="flex flex-wrap justify-center gap-2 mb-10">
                 <span class="px-4 py-1.5 glass-card text-xs md:text-sm text-gray-200">PHP & Laravel</span>
                 <span class="px-4 py-1.5 glass-card text-xs md:text-sm text-gray-200">Python</span>
                 <span class="px-4 py-1.5 glass-card text-xs md:text-sm text-gray-200">زیرساخت لینوکس</span>
                 <span class="px-4 py-1.5 glass-card text-xs md:text-sm text-gray-200">سئو و رابط کاربری</span>
-                <span class="px-4 py-1.5 glass-card text-xs md:text-sm text-gray-200">راهکارهای نرم‌افزاری پزشکی</span>
-            </div>
-
-            <!-- لینک‌های شبکه‌های اجتماعی -->
-            <div class="w-full space-y-4 max-w-md mx-auto">
-                <a href="https://instagram.com/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-card hover:border-pink-500/50 hover:text-pink-400 hover:shadow-[0_0_15px_rgba(236,72,153,0.3)] group">
-                    <div class="flex items-center gap-4"><i data-lucide="instagram" class="w-6 h-6 group-hover:scale-110 transition-transform"></i> <span class="font-bold text-lg">اینستاگرام</span></div>
-                    <i data-lucide="chevron-left" class="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:-translate-x-1 transition-transform"></i>
-                </a>
-                
-                <a href="https://t.me/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-card hover:border-blue-500/50 hover:text-blue-400 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] group">
-                    <div class="flex items-center gap-4"><i data-lucide="send" class="w-6 h-6 group-hover:scale-110 transition-transform"></i> <span class="font-bold text-lg">تلگرام</span></div>
-                    <i data-lucide="chevron-left" class="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:-translate-x-1 transition-transform"></i>
-                </a>
-                
-                <a href="https://wa.me/989000000000" target="_blank" class="flex items-center justify-between p-4 glass-card hover:border-green-500/50 hover:text-green-400 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)] group">
-                    <div class="flex items-center gap-4"><i data-lucide="message-circle" class="w-6 h-6 group-hover:scale-110 transition-transform"></i> <span class="font-bold text-lg">واتس‌اپ</span></div>
-                    <i data-lucide="chevron-left" class="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:-translate-x-1 transition-transform"></i>
-                </a>
-
-                <a href="https://github.com/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-card hover:border-white/50 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] group">
-                    <div class="flex items-center gap-4"><i data-lucide="github" class="w-6 h-6 group-hover:scale-110 transition-transform"></i> <span class="font-bold text-lg" dir="ltr">GitHub</span></div>
-                    <i data-lucide="chevron-left" class="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:-translate-x-1 transition-transform"></i>
-                </a>
             </div>
         </section>
 
-        <!-- بخش خدمات -->
+        <!-- خدمات -->
         <section class="mb-16 animate-item opacity-0">
             <h3 class="text-2xl font-bold mb-6 text-center">خدمات و تخصص‌ها</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="glass-card p-6 text-right">
+                <div class="glass-card p-6 text-right hover:-translate-y-1">
                     <i data-lucide="code-2" class="text-purple-400 mb-4 w-8 h-8"></i>
                     <h4 class="text-lg font-bold mb-2">توسعه بک‌اند</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">طراحی و توسعه معماری‌های پیچیده نرم‌افزاری با استفاده از PHP، Laravel و پایتون.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">طراحی معماری‌های پیچیده نرم‌افزاری با PHP, Laravel و پایتون.</p>
                 </div>
-                <div class="glass-card p-6 text-right">
+                <div class="glass-card p-6 text-right hover:-translate-y-1">
                     <i data-lucide="server" class="text-blue-400 mb-4 w-8 h-8"></i>
-                    <h4 class="text-lg font-bold mb-2">مدیریت سرور لینوکس</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">کانفیگ، بهینه‌سازی و تامین امنیت زیرساخت‌ها و سرورهای لینوکسی.</p>
+                    <h4 class="text-lg font-bold mb-2">سرور و لینوکس</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">کانفیگ، بهینه‌سازی و تامین امنیت زیرساخت‌ها و سرورها.</p>
                 </div>
             </div>
         </section>
 
-        <!-- فوتر و راه‌های ارتباطی -->
-        <section class="text-center animate-item opacity-0 mt-20 border-t border-white/10 pt-10">
-            <h3 class="text-xl font-bold mb-6">ارتباط مستقیم با من</h3>
+        <!-- فوتر -->
+        <section class="text-center animate-item opacity-0 mt-10 border-t border-white/10 pt-10">
+            <h3 class="text-xl font-bold mb-6">ارتباط مستقیم</h3>
             <div class="flex justify-center gap-6 mb-10">
                 <a href="mailto:your_email@gmail.com" class="p-4 glass-card rounded-full hover:scale-110 hover:text-purple-400 transition-all"><i data-lucide="mail"></i></a>
                 <a href="tel:+989000000000" class="p-4 glass-card rounded-full hover:scale-110 hover:text-purple-400 transition-all"><i data-lucide="phone"></i></a>
             </div>
-            <p class="text-gray-500 text-sm" dir="ltr">© <span id="year"></span> Mehdi Khodabakhshi.</p>
         </section>
 
     </main>
 
-    <!-- کدهای اجرایی جاوااسکریپت -->
-    <script>
-        // ساخت آیکون‌ها
-        lucide.createIcons();
-        document.getElementById("year").innerText = new Date().getFullYear();
+    <!-- ======= منوی همبرگری و شبکه‌های اجتماعی ======= -->
+    
+    <!-- پنل شبکه‌های اجتماعی (مخفی به صورت پیش‌فرض) -->
+    <div id="social-menu" class="fixed bottom-24 left-1/2 transform -translate-x-1/2 w-[90%] max-w-sm glass-card p-4 space-y-3 z-40 opacity-0 invisible" style="transform: translate(-50%, 50px); pointer-events: none;">
+        
+        <a href="https://instagram.com/mhdidiez" target="_blank" class="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-pink-500/20 text-white hover:text-pink-400 transition-colors group">
+            <div class="flex items-center gap-3">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                <span class="font-bold">اینستاگرام</span>
+            </div>
+            <i data-lucide="chevron-left" class="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:-translate-x-1 transition-transform"></i>
+        </a>
 
-        const bgMusic = document.getElementById("bg-music");
-        const musicToggleBtn = document.getElementById("music-toggle");
-        const musicIcon = document.getElementById("music-icon");
-        let isPlaying = false;
+        <a href="https://t.me/mhdidiez" target="_blank" class="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-blue-500/20 text-white hover:text-blue-400 transition-colors group">
+            <div class="flex items-center gap-3">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                <span class="font-bold">تلگرام</span>
+            </div>
+            <i data-lucide="chevron-left" class="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:-translate-x-1 transition-transform"></i>
+        </a>
 
-        // انیمیشن ورود المان‌ها به محض لود سایت
-        window.onload = () => {
-            gsap.to(musicToggleBtn, { opacity: 1, duration: 1, delay: 0.5 });
-            gsap.to(".animate-item", {
-                y: -30,
-                opacity: 1,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: "back.out(1.2)"
-            });
-        };
-
-        // پخش هوشمند موزیک با اولین لمس یا اسکرول صفحه
-        const startMusic = () => {
-            if (!isPlaying) {
-                bgMusic.volume = 0.4; // ولوم ملایم
-                bgMusic.play().then(() => {
-                    isPlaying = true;
-                    musicIcon.setAttribute("data-lucide", "music");
-                    musicIcon.classList.add("animate-pulse", "text-purple-400");
-                    musicIcon.classList.remove("text-gray-500");
-                    lucide.createIcons();
-                }).catch(err => {
-                    console.log("مرورگر جلوی پخش اتوماتیک را گرفت.");
-                });
-            }
-            // حذف رویدادها بعد از اولین اجرا که سایت سنگین نشه
-            document.removeEventListener("click", startMusic);
-            document.removeEventListener("scroll", startMusic);
-            document.removeEventListener("touchstart", startMusic);
-        };
-
-        // منتظر موندن برای اولین واکنش کاربر
-        document.addEventListener("click", startMusic);
-        document.addEventListener("scroll", startMusic);
-        document.addEventListener("touchstart", startMusic);
-
-        // دکمه دستی قطع و وصل موزیک
-        musicToggleBtn.addEventListener("click", (e) => {
-            e.stopPropagation(); // جلوگیری از تداخل با کلیک کل صفحه
-            if (isPlaying) {
-                bgMusic.pause();
-                musicIcon.setAttribute("data-lucide", "volume-x");
-                musicIcon.classList.remove("animate-pulse", "text-purple-400");
-                musicIcon.classList.add("text-gray-500");
-            } else {
-                bgMusic.play();
-                musicIcon.setAttribute("data-lucide", "music");
-                musicIcon.classList.add("animate-pulse", "text-purple-400");
-                musicIcon.classList.remove("text-gray-500");
-            }
-            isPlaying = !isPlaying;
-            lucide.createIcons();
-        });
-    </script>
-</body>
-</html>
+        <a href="https://wa.me/989000000000" target="_blank" class="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-green-500/20 text-white hover:text-green-400 transition-colors group">
+            <div class="flex items-center gap-3">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M11.904 0C5.336 0 .004 5.334.004 11.898c0 2.097.545 4.143 1.583 5.945L.004 24l6.33-1.656c1.745.952 3.714 1.455 5.767 1.455 6.568 0 11.9-5.332 11.9-11.9C24 5.334 18.473 0 11.904 0zm0 21.8c-1.776 
