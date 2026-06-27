@@ -55,12 +55,28 @@
             border-radius: 1.5rem; transition: all 0.3s ease;
         }
 
+        /* دکمه‌های شناور بالا */
+        .top-btn {
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%; padding: 0.75rem; cursor: pointer;
+            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+        }
+        .top-btn:hover { background: rgba(255, 255, 255, 0.1); transform: scale(1.05); }
+
         /* انیمیشن دور عکس */
         .profile-ring {
             background: conic-gradient(from 0deg, #9333ea, #3b82f6, #ec4899, #9333ea);
             animation: spin 4s linear infinite;
         }
         @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* سایدبار (منوی کشویی از راست) */
+        #sidebar {
+            box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+            border-right: none; border-radius: 2rem 0 0 2rem;
+            border-left: 1px solid var(--glass-border);
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-purple-500/30 pb-20">
@@ -68,22 +84,26 @@
     <!-- موزیک -->
     <audio id="bg-music" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
-    <!-- دکمه کنترل موزیک (بالا سمت چپ) -->
-    <button id="music-toggle" class="fixed top-5 left-5 z-40 glass-panel p-3 rounded-full opacity-0 hover:bg-white/10 transition-colors">
+    <!-- دکمه موزیک (بالا سمت چپ) -->
+    <button id="music-toggle" class="fixed top-5 left-5 z-40 top-btn opacity-0">
         <i id="music-icon" data-lucide="volume-x" class="w-6 h-6 text-gray-400"></i>
+    </button>
+
+    <!-- دکمه منوی همبرگری (بالا سمت راست) -->
+    <button id="hamburger-btn" class="fixed top-5 right-5 z-50 top-btn opacity-0 shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+        <i id="hamburger-icon" data-lucide="menu" class="w-6 h-6 text-white"></i>
     </button>
 
     <div class="cosmic-bg"></div>
     <div class="ambient-light"></div>
 
-    <main class="relative z-10 max-w-lg mx-auto px-5 pt-20">
+    <main class="relative z-10 max-w-lg mx-auto px-5 pt-24">
         
         <!-- ================= بخش ۱: پروفایل ================= -->
         <section class="flex flex-col items-center text-center mb-10 animate-section opacity-0">
             <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full p-1 mb-6">
                 <div class="absolute inset-0 rounded-full profile-ring opacity-80"></div>
                 <div class="absolute inset-1 bg-black rounded-full"></div>
-                <!-- توجه: عکس profile.jpg کنار این فایل باشد -->
                 <img src="profile.jpg" alt="Mehdi Khodabakhshi" class="w-full h-full rounded-full object-cover relative z-10 border-2 border-black" onerror="this.src='https://ui-avatars.com/api/?name=Mehdi+Khodabakhshi&background=0D8ABC&color=fff&size=256'">
             </div>
 
@@ -105,7 +125,6 @@
         <!-- ================= بخش ۲: لینک‌های شبکه‌های اجتماعی (در صفحه اصلی) ================= -->
         <section class="flex flex-col gap-4 w-full animate-section opacity-0 mb-16">
             
-            <!-- دکمه اینستاگرام -->
             <a href="https://instagram.com/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-panel hover:bg-pink-600/20 border-white/10 hover:border-pink-500/50 hover:shadow-[0_0_20px_rgba(236,72,153,0.2)] transition-all group">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 group-hover:scale-110 transition-transform">
@@ -116,7 +135,6 @@
                 <i data-lucide="chevron-left" class="w-5 h-5 text-gray-500 group-hover:text-pink-400 group-hover:-translate-x-1 transition-all"></i>
             </a>
 
-            <!-- دکمه تلگرام -->
             <a href="https://t.me/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-panel hover:bg-blue-600/20 border-white/10 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] transition-all group">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
@@ -127,8 +145,6 @@
                 <i data-lucide="chevron-left" class="w-5 h-5 text-gray-500 group-hover:text-blue-400 group-hover:-translate-x-1 transition-all"></i>
             </a>
 
-            <!-- دکمه واتس‌اپ -->
-            <!-- در لینک پایین جای 989000000000 شماره خودت رو بنویس -->
             <a href="https://wa.me/989000000000" target="_blank" class="flex items-center justify-between p-4 glass-panel hover:bg-green-600/20 border-white/10 hover:border-green-500/50 hover:shadow-[0_0_20px_rgba(34,197,94,0.2)] transition-all group">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform">
@@ -139,7 +155,6 @@
                 <i data-lucide="chevron-left" class="w-5 h-5 text-gray-500 group-hover:text-green-400 group-hover:-translate-x-1 transition-all"></i>
             </a>
 
-            <!-- دکمه گیت‌هاب -->
             <a href="https://github.com/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-panel hover:bg-gray-600/30 border-white/10 hover:border-gray-400/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all group">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-full bg-gray-500/20 flex items-center justify-center text-gray-300 group-hover:scale-110 transition-transform">
@@ -152,37 +167,54 @@
             
         </section>
 
-        <!-- ================= بخش ۳: خدمات کلی (اختیاری ولی قشنگ) ================= -->
-        <section class="animate-section opacity-0 mb-10">
-            <h3 class="text-xl font-bold text-center mb-6 text-gray-300">خلاصه تخصص‌ها</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="glass-panel p-5 text-right flex gap-4 items-center">
-                    <i data-lucide="code-2" class="text-purple-400 w-8 h-8 flex-shrink-0"></i>
-                    <div>
-                        <h4 class="font-bold text-white mb-1">توسعه بک‌اند</h4>
-                        <p class="text-gray-400 text-xs font-en">PHP, Laravel, Python</p>
-                    </div>
-                </div>
-                
-                <div class="glass-panel p-5 text-right flex gap-4 items-center">
-                    <i data-lucide="server" class="text-blue-400 w-8 h-8 flex-shrink-0"></i>
-                    <div>
-                        <h4 class="font-bold text-white mb-1">سرور و لینوکس</h4>
-                        <p class="text-gray-400 text-xs font-en">DevOps, Server Config</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- فوتر / ایمیل -->
-        <section class="animate-section opacity-0 flex justify-center pb-10 border-t border-white/10 pt-8 mt-8">
-            <a href="mailto:your_email@gmail.com" class="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors">
-                <i data-lucide="mail" class="w-5 h-5"></i>
-                <span class="font-en text-sm">مهدی خدابخشی</span>
-            </a>
-        </section>
-
     </main>
+
+    <!-- ================= سایدبار (منوی دسته‌بندی‌ها) ================= -->
+    
+    <!-- لایه تاریک‌کننده پس‌زمینه -->
+    <div id="overlay" class="fixed inset-0 bg-black/70 backdrop-blur-md z-40 opacity-0 invisible transition-all duration-300"></div>
+
+    <!-- منوی کشویی سمت راست -->
+    <aside id="sidebar" class="fixed top-0 right-0 w-80 max-w-[85vw] h-full glass-panel z-50 p-6 pt-24 transform translate-x-full border-y-0 flex flex-col justify-start">
+        
+        <h3 class="font-bold text-xl mb-6 text-center text-white border-b border-white/10 pb-4">منوی سایت</h3>
+        
+        <div class="flex flex-col gap-4">
+            <!-- درباره من -->
+            <!-- لینک href="#" رو می‌تونی بعدا به صفحه دلخواهت تغییر بدی -->
+            <a href="#" class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 hover:bg-purple-600/20 border border-white/5 hover:border-purple-500/50 transition-all group">
+                <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+                    <i data-lucide="user" class="w-6 h-6"></i>
+                </div>
+                <span class="font-bold text-lg">درباره من</span>
+            </a>
+
+            <!-- پروژه‌ها -->
+            <a href="#" class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 hover:bg-blue-600/20 border border-white/5 hover:border-blue-500/50 transition-all group">
+                <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+                    <i data-lucide="folder-git-2" class="w-6 h-6"></i>
+                </div>
+                <span class="font-bold text-lg">پروژه‌ها</span>
+            </a>
+
+            <!-- خدمات / مهارت‌ها -->
+            <a href="#" class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 hover:bg-pink-600/20 border border-white/5 hover:border-pink-500/50 transition-all group">
+                <div class="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 group-hover:scale-110 transition-transform">
+                    <i data-lucide="sparkles" class="w-6 h-6"></i>
+                </div>
+                <span class="font-bold text-lg">خدمات من</span>
+            </a>
+
+            <!-- ثبت پروژه (تماس) -->
+            <!-- این دکمه رو مستقیم وصل کردم به واتس‌اپت که کارفرما سریع پیام بده -->
+            <a href="https://wa.me/989000000000" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 transition-all group mt-4 shadow-[0_5px_20px_rgba(147,51,234,0.4)]">
+                <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                    <i data-lucide="rocket" class="w-6 h-6"></i>
+                </div>
+                <span class="font-bold text-lg text-white">ثبت پروژه جدید</span>
+            </a>
+        </div>
+    </aside>
 
     <!-- اسکریپت‌ها -->
     <script>
@@ -192,6 +224,7 @@
         // ۲. انیمیشن باز شدن صفحه
         window.onload = () => {
             gsap.to("#music-toggle", { opacity: 1, duration: 1, delay: 0.2 });
+            gsap.to("#hamburger-btn", { opacity: 1, duration: 1, delay: 0.3 });
             gsap.to(".animate-section", { 
                 y: -20, 
                 opacity: 1, 
@@ -218,7 +251,6 @@
                     lucide.createIcons();
                 }).catch(() => {});
             }
-            // بعد از یکبار اجرا، لیسنرها حذف میشن تا سایت کند نشه
             document.removeEventListener("click", startMusic);
             document.removeEventListener("scroll", startMusic);
             document.removeEventListener("touchstart", startMusic);
@@ -244,6 +276,42 @@
             }
             isPlaying = !isPlaying;
             lucide.createIcons();
+        });
+
+        // ۴. منطق سایدبار و منوی همبرگری
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        let isMenuOpen = false;
+
+        const toggleMenu = () => {
+            if (!isMenuOpen) {
+                // باز کردن منو
+                overlay.classList.remove('invisible');
+                overlay.classList.add('opacity-100');
+                gsap.to(sidebar, { x: 0, duration: 0.5, ease: "power3.out" });
+                hamburgerIcon.setAttribute("data-lucide", "x");
+                hamburgerBtn.classList.add("bg-white/10");
+            } else {
+                // بستن منو
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => overlay.classList.add('invisible'), 300);
+                gsap.to(sidebar, { x: "100%", duration: 0.4, ease: "power3.in" });
+                hamburgerIcon.setAttribute("data-lucide", "menu");
+                hamburgerBtn.classList.remove("bg-white/10");
+            }
+            isMenuOpen = !isMenuOpen;
+            lucide.createIcons();
+        };
+
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        overlay.addEventListener('click', () => {
+            if(isMenuOpen) toggleMenu();
         });
     </script>
 </body>
