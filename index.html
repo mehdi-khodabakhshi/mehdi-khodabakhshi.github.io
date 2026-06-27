@@ -1,215 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="dark">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehdi Khodabakhshi | Software Engineer</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Mehdi Khodabakhshi | Software Engineer</title>
-
-<meta name="description" content="Software Engineer • PHP • Laravel • Python • Linux Infrastructure">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
+    <style>
+        body { background-color: #050505; color: #ffffff; overflow-x: hidden; font-family: system-ui, sans-serif; margin: 0; }
+        .bg-gradient-animate { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle at 50% 50%, #1a0033, #0a001a, #050505); background-size: 200% 200%; animation: gradientMove 15s ease infinite; z-index: -1; }
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .glass-card { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; transition: all 0.3s ease; }
+        .glass-card:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-3px); border: 1px solid rgba(255, 255, 255, 0.15); }
+        .spin-border { animation: spin 3s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        #splash { position: fixed; inset: 0; background: #050505; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; cursor: pointer; }
+    </style>
 </head>
-
-<body>
-
-<div id="cursor-light"></div>
-
-<div id="background"></div>
-
-<div id="splash">
-
-<h1>MK</h1>
-
-<button id="enterBtn">
-Enter
-</button>
-
-</div>
-
-<audio id="bgMusic" loop>
-<source src="assets/music/music.mp3" type="audio/mp3">
-</audio>
-
-<header>
-
-<nav>
-
-<div class="logo">
-MK
-</div>
-
-<ul>
-
-<li><a href="#about">About</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#contact">Contact</a></li>
-
-</ul>
-
-</nav>
-
-</header>
-
-<section class="hero">
-
-<div class="glass hero-card">
-
-<img src="assets/images/profile.jpg" class="profile">
-
-<h1>
-Mehdi Khodabakhshi
-</h1>
-
-<h2 id="typing"></h2>
-
-<p>
-
-PHP • Laravel • Python
-
-<br>
-
-Linux Infrastructure
-
-<br>
-
-UI/UX • SEO
-
-<br>
-
-Healthcare Solutions
-
-</p>
-
-<div class="buttons">
-
-<a href="#" class="btn">
-<i class="ri-whatsapp-line"></i>
-WhatsApp
-</a>
-
-<a href="https://instagram.com/mhdidiez" class="btn">
-<i class="ri-instagram-line"></i>
-Instagram
-</a>
-
-<a href="https://t.me/mhdidiez" class="btn">
-<i class="ri-telegram-line"></i>
-Telegram
-</a>
-
-<a href="#" class="btn">
-<i class="ri-github-line"></i>
-GitHub
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="about">
-
-<div class="glass card">
-
-<h2>About Me</h2>
-
-<p>
-
-Software Engineer passionate about building modern web applications, backend systems and healthcare solutions.
-
-</p>
-
-</div>
-
-</section>
-
-<section id="skills">
-
-<h2>Skills</h2>
-
-<div class="grid">
-
-<div class="glass skill">PHP</div>
-
-<div class="glass skill">Laravel</div>
-
-<div class="glass skill">Python</div>
-
-<div class="glass skill">Linux</div>
-
-<div class="glass skill">SEO</div>
-
-<div class="glass skill">UI/UX</div>
-
-</div>
-
-</section>
-
-<section id="projects">
-
-<h2>Projects</h2>
-
-<div class="grid">
-
-<div class="glass project">
-
-Coming Soon
-
-</div>
-
-<div class="glass project">
-
-Coming Soon
-
-</div>
-
-<div class="glass project">
-
-Coming Soon
-
-</div>
-
-</div>
-
-</section>
-
-<section id="contact">
-
-<div class="glass card">
-
-<h2>Contact</h2>
-
-<p>Email</p>
-
-<p>Phone</p>
-
-</div>
-
-</section>
-
-<footer>
-
-© 2026 Mehdi Khodabakhshi
-
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-
-<script src="script.js"></script>
-
+<body class="antialiased selection:bg-purple-500/30 pb-20">
+
+    <audio id="bg-music" loop><source src="music.mp3" type="audio/mpeg"></audio>
+
+    <div id="splash">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-6">MHDIDIEZ.</h1>
+        <div class="flex items-center gap-2 text-gray-400 animate-pulse bg-white/5 px-6 py-2 rounded-full border border-white/10">
+            <i data-lucide="mouse-pointer-click" class="w-5 h-5"></i>
+            <span class="tracking-widest text-sm">TAP TO ENTER</span>
+        </div>
+    </div>
+
+    <button id="music-toggle" class="fixed top-6 right-6 z-50 glass-card p-3 rounded-full hidden opacity-0 transition-transform hover:scale-110">
+        <i id="music-icon" data-lucide="music" class="w-5 h-5 text-purple-400 animate-pulse"></i>
+    </button>
+
+    <div class="bg-gradient-animate"></div>
+
+    <main class="relative z-10 max-w-2xl mx-auto px-6 pt-20 hidden opacity-0" id="main-content">
+        <section class="flex flex-col items-center text-center mb-16 animate-item">
+            <div class="relative w-36 h-36 rounded-full p-1 glass-card mb-6 shadow-[0_0_30px_rgba(168,85,247,0.2)]">
+                <img src="profile.jpg" alt="Mehdi Khodabakhshi" class="w-full h-full rounded-full object-cover relative z-10" onerror="this.src='https://ui-avatars.com/api/?name=Mehdi+Khodabakhshi&background=0D8ABC&color=fff&size=256'">
+                <div class="absolute inset-0 rounded-full border-2 border-transparent border-t-purple-500 spin-border z-0"></div>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-2">Mehdi Khodabakhshi</h1>
+            <h2 class="text-xl text-purple-400 font-medium mb-8 tracking-wide">Software Engineer</h2>
+
+            <div class="flex flex-wrap justify-center gap-2 mb-10">
+                <span class="px-3 py-1.5 glass-card text-xs text-gray-200">PHP & Laravel</span>
+                <span class="px-3 py-1.5 glass-card text-xs text-gray-200">Python</span>
+                <span class="px-3 py-1.5 glass-card text-xs text-gray-200">Linux Infrastructure</span>
+                <span class="px-3 py-1.5 glass-card text-xs text-gray-200">UI/UX & SEO</span>
+                <span class="px-3 py-1.5 glass-card text-xs text-gray-200">Healthcare IT</span>
+            </div>
+
+            <div class="w-full space-y-4 max-w-md mx-auto">
+                <a href="https://instagram.com/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-card hover:border-pink-500/50 hover:text-pink-400 group">
+                    <div class="flex items-center gap-4"><i data-lucide="instagram" class="group-hover:scale-110 transition-transform"></i> <span class="font-bold">Instagram</span></div>
+                </a>
+                <a href="https://t.me/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-card hover:border-blue-500/50 hover:text-blue-400 group">
+                    <div class="flex items-center gap-4"><i data-lucide="send" class="group-hover:scale-110 transition-transform"></i> <span class="font-bold">Telegram</span></div>
+                </a>
+                <a href="https://github.com/mhdidiez" target="_blank" class="flex items-center justify-between p-4 glass-card hover:border-white/50 group">
+                    <div class="flex items-center gap-4"><i data-lucide="github" class="group-hover:scale-110 transition-transform"></i> <span class="font-bold">GitHub</span></div>
+                </a>
+                <a href="https://wa.me/989000000000" target="_blank" class="flex items-center justify-between p-4 glass-card hover:border-green-500/50 hover:text-green-400 group">
+                    <div class="flex items-center gap-4"><i data-lucide="message-circle" class="group-hover:scale-110 transition-transform"></i> <span class="font-bold">WhatsApp</span></div>
+                </a>
+            </div>
+        </section>
+
+        <section class="mb-16 animate-item">
+            <h3 class="text-2xl font-bold mb-6 text-center tracking-wider">Services</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="glass-card p-6">
+                    <i data-lucide="terminal" class="text-purple-400 mb-4 w-8 h-8"></i>
+                    <h4 class="text-lg font-bold mb-2">Backend Dev</h4>
+                    <p class="text-gray-400 text-sm">System architectures using PHP, Laravel, and Python.</p>
+                </div>
+                <div class="glass-card p-6">
+                    <i data-lucide="server" class="text-blue-400 mb-4 w-8 h-8"></i>
+                    <h4 class="text-lg font-bold mb-2">Linux Servers</h4>
+                    <p class="text-gray-400 text-sm">Optimized Linux infrastructure management.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center animate-item mt-20 border-t border-white/10 pt-10">
+            <h3 class="text-xl font-bold mb-6">Contact Me</h3>
+            <div class="flex justify-center gap-6 mb-10">
+                <a href="mailto:your_email@gmail.com" class="p-4 glass-card rounded-full hover:scale-110"><i data-lucide="mail"></i></a>
+                <a href="tel:+989000000000" class="p-4 glass-card rounded-full hover:scale-110"><i data-lucide="phone"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        lucide.createIcons();
+        const splash = document.getElementById("splash");
+        const mainContent = document.getElementById("main-content");
+        const bgMusic = document.getElementById("bg-music");
+        const musicToggleBtn = document.getElementById("music-toggle");
+        const musicIcon = document.getElementById("music-icon");
+        let isPlaying = false;
+
+        splash.addEventListener("click", () => {
+            bgMusic.volume = 0.5; bgMusic.play(); isPlaying = true;
+            const tl = gsap.timeline();
+            tl.to("#splash", { opacity: 0, scale: 1.1, duration: 0.8, onComplete: () => { splash.style.display = "none"; mainContent.classList.remove("hidden"); musicToggleBtn.classList.remove("hidden"); } })
+            .to(mainContent, { opacity: 1, duration: 0.1 }).to(musicToggleBtn, { opacity: 1, duration: 0.5 })
+            .from(".animate-item", { y: 60, opacity: 0, duration: 0.8, stagger: 0.15, ease: "back.out(1.2)" });
+        });
+
+        musicToggleBtn.addEventListener("click", () => {
+            if (isPlaying) { bgMusic.pause(); musicIcon.setAttribute("data-lucide", "volume-x"); musicIcon.classList.remove("animate-pulse", "text-purple-400"); musicIcon.classList.add("text-gray-500"); } 
+            else { bgMusic.play(); musicIcon.setAttribute("data-lucide", "music"); musicIcon.classList.add("animate-pulse", "text-purple-400"); musicIcon.classList.remove("text-gray-500"); }
+            isPlaying = !isPlaying; lucide.createIcons();
+        });
+    </script>
 </body>
-
 </html>
