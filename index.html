@@ -114,9 +114,9 @@
       place-items: center;
       position: relative;
       background: conic-gradient(from 0deg, #7c8cff, #7df9ff, #c089ff, #7c8cff);
-      animation: spinRing 6s linear infinite;
       padding: 4px;
       box-shadow: 0 0 40px rgba(124, 140, 255, 0.4);
+      transform: none;
     }
 
     .profile-ring img {
@@ -126,15 +126,6 @@
       object-fit: cover;
       border: 2px solid rgba(255, 255, 255, 0.35);
       background: rgba(255, 255, 255, 0.04);
-    }
-
-    @keyframes spinRing {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
     }
 
     .skill-tag {
@@ -255,7 +246,7 @@
 <body>
   <div class="cosmic-bg" aria-hidden="true"></div>
 
-  <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
+  <audio id="bgMusic" src="music.mp3" loop preload="auto" autoplay playsinline></audio>
 
   <header class="fixed top-0 right-0 left-0 z-40 px-4 sm:px-8 pt-4 sm:pt-6">
     <div class="header-row mx-auto max-w-5xl flex items-center justify-between">
@@ -317,19 +308,19 @@
         </div>
 
         <div class="hero-item mt-9 mx-auto w-full max-w-xl space-y-3.5">
-          <a class="bio-link instagram glass rounded-2xl px-4 sm:px-5 py-3.5 flex items-center justify-between" href="https://instagram.com/mhdidiez" target="_blank" rel="noopener noreferrer">
+          <a class="bio-link instagram glass rounded-2xl px-4 sm:px-5 py-3.5 flex flex-row-reverse items-center justify-between text-right gap-3" href="https://instagram.com/mhdidiez" target="_blank" rel="noopener noreferrer">
             <span class="font-semibold">اینستاگرام</span>
             <i data-lucide="instagram" class="size-5"></i>
           </a>
-          <a class="bio-link telegram glass rounded-2xl px-4 sm:px-5 py-3.5 flex items-center justify-between" href="https://t.me/mhdidiez" target="_blank" rel="noopener noreferrer">
+          <a class="bio-link telegram glass rounded-2xl px-4 sm:px-5 py-3.5 flex flex-row-reverse items-center justify-between text-right gap-3" href="https://t.me/mhdidiez" target="_blank" rel="noopener noreferrer">
             <span class="font-semibold">تلگرام</span>
             <i data-lucide="send" class="size-5"></i>
           </a>
-          <a class="bio-link whatsapp glass rounded-2xl px-4 sm:px-5 py-3.5 flex items-center justify-between" href="https://wa.me/989388042626" target="_blank" rel="noopener noreferrer">
+          <a class="bio-link whatsapp glass rounded-2xl px-4 sm:px-5 py-3.5 flex flex-row-reverse items-center justify-between text-right gap-3" href="https://wa.me/989388042626" target="_blank" rel="noopener noreferrer">
             <span class="font-semibold">واتس اپ</span>
             <i data-lucide="message-circle" class="size-5"></i>
           </a>
-          <a class="bio-link github glass rounded-2xl px-4 sm:px-5 py-3.5 flex items-center justify-between" href="https://github.com/mhdidiez" target="_blank" rel="noopener noreferrer">
+          <a class="bio-link github glass rounded-2xl px-4 sm:px-5 py-3.5 flex flex-row-reverse items-center justify-between text-right gap-3" href="https://github.com/mhdidiez" target="_blank" rel="noopener noreferrer">
             <span class="font-semibold en">GitHub</span>
             <i data-lucide="github" class="size-5"></i>
           </a>
@@ -435,17 +426,16 @@
       window.removeEventListener("click", handleFirstInteraction);
       window.removeEventListener("touchstart", handleFirstInteraction);
       window.removeEventListener("scroll", handleFirstInteraction);
+      window.removeEventListener("pointerdown", handleFirstInteraction);
+      window.removeEventListener("keydown", handleFirstInteraction);
     }
 
     async function bootMusic() {
       await tryPlayMusic();
     }
 
-    ["click", "touchstart", "scroll"].forEach((evt) => {
-      window.addEventListener(evt, handleFirstInteraction, { passive: true });
-    });
-
-    window.addEventListener("load", bootMusic);
+    window.addEventListener("DOMContentLoaded", bootMusic, { once: true });
+    window.addEventListener("load", bootMusic, { once: true });
 
     musicToggle.addEventListener("click", async () => {
       if (bgMusic.paused) {
@@ -455,6 +445,12 @@
         setMusicIcon(false);
       }
     });
+
+    window.addEventListener("pointerdown", handleFirstInteraction, { passive: true });
+    window.addEventListener("click", handleFirstInteraction, { passive: true });
+    window.addEventListener("touchstart", handleFirstInteraction, { passive: true });
+    window.addEventListener("scroll", handleFirstInteraction, { passive: true });
+    window.addEventListener("keydown", handleFirstInteraction);
 
     gsap.fromTo(
       ".hero-item",
