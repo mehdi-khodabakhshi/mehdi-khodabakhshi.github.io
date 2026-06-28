@@ -11,9 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <!-- اسکریپت‌های ضروری -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- استفاده از jsdelivr به جای unpkg برای جلوگیری از فیلترینگ و لود نشدن آیکون‌ها -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
 
   <style>
     :root {
@@ -66,9 +69,7 @@
       z-index: 0;
     }
 
-    .latin {
-      font-family: 'Poppins', 'Vazirmatn', sans-serif;
-    }
+    .latin { font-family: 'Poppins', 'Vazirmatn', sans-serif; }
 
     .glass {
       background: var(--panel);
@@ -98,31 +99,9 @@
       animation: floatOrb 18s ease-in-out infinite alternate;
     }
 
-    .orb-one {
-      top: 10%;
-      right: 6%;
-      width: 18rem;
-      height: 18rem;
-      background: radial-gradient(circle, rgba(34, 211, 238, 0.24), transparent 68%);
-    }
-
-    .orb-two {
-      bottom: 18%;
-      left: 4%;
-      width: 20rem;
-      height: 20rem;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.23), transparent 70%);
-      animation-delay: -6s;
-    }
-
-    .orb-three {
-      top: 42%;
-      left: 38%;
-      width: 12rem;
-      height: 12rem;
-      background: radial-gradient(circle, rgba(236, 72, 153, 0.18), transparent 72%);
-      animation-delay: -12s;
-    }
+    .orb-one { top: 10%; right: 6%; width: 18rem; height: 18rem; background: radial-gradient(circle, rgba(34, 211, 238, 0.24), transparent 68%); }
+    .orb-two { bottom: 18%; left: 4%; width: 20rem; height: 20rem; background: radial-gradient(circle, rgba(168, 85, 247, 0.23), transparent 70%); animation-delay: -6s; }
+    .orb-three { top: 42%; left: 38%; width: 12rem; height: 12rem; background: radial-gradient(circle, rgba(236, 72, 153, 0.18), transparent 72%); animation-delay: -12s; }
 
     .profile-ring {
       position: relative;
@@ -151,15 +130,7 @@
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
     }
 
-    .avatar-shell img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .glow-text {
-      text-shadow: 0 0 24px rgba(255, 255, 255, 0.18);
-    }
+    .glow-text { text-shadow: 0 0 24px rgba(255, 255, 255, 0.18); }
 
     .social-link {
       position: relative;
@@ -177,19 +148,13 @@
       pointer-events: none;
     }
 
-    .social-link:hover::before {
-      opacity: 1;
-    }
-
+    .social-link:hover::before { opacity: 1; }
     .social-link:hover {
       border-color: color-mix(in srgb, var(--brand) 55%, rgba(255, 255, 255, 0.15));
       box-shadow: 0 0 0 1px color-mix(in srgb, var(--brand) 20%, transparent), 0 22px 45px color-mix(in srgb, var(--brand) 16%, transparent);
     }
 
-    .social-link .social-icon {
-      transition: transform 280ms ease, color 280ms ease;
-    }
-
+    .social-link .social-icon { transition: transform 280ms ease, color 280ms ease; }
     .social-link:hover .social-icon {
       color: var(--brand);
       transform: translateX(-3px) scale(1.04);
@@ -205,25 +170,11 @@
       transform-origin: center;
     }
 
-    .hamburger.is-open .menu-line:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-      width: 1.35rem;
-    }
+    .hamburger.is-open .menu-line:nth-child(1) { transform: translateY(6px) rotate(45deg); width: 1.35rem; }
+    .hamburger.is-open .menu-line:nth-child(2) { opacity: 0; transform: translateX(8px); }
+    .hamburger.is-open .menu-line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); width: 1.35rem; }
 
-    .hamburger.is-open .menu-line:nth-child(2) {
-      opacity: 0;
-      transform: translateX(8px);
-    }
-
-    .hamburger.is-open .menu-line:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-      width: 1.35rem;
-    }
-
-    .sidebar-link {
-      transition: transform 240ms ease, border-color 240ms ease, background 240ms ease, box-shadow 240ms ease;
-    }
-
+    .sidebar-link { transition: transform 240ms ease, border-color 240ms ease, background 240ms ease, box-shadow 240ms ease; }
     .sidebar-link:hover {
       transform: translateX(-4px);
       border-color: rgba(255, 255, 255, 0.18);
@@ -231,45 +182,15 @@
       box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
     }
 
-    .sidebar-shell {
-      box-shadow: -30px 0 80px rgba(0, 0, 0, 0.45);
-    }
+    .sidebar-shell { box-shadow: -30px 0 80px rgba(0, 0, 0, 0.45); }
+    .section-title { letter-spacing: 0.35em; }
 
-    .section-title {
-      letter-spacing: 0.35em;
-    }
-
-    @keyframes driftGlow {
-      from {
-        transform: translate3d(-2%, -1%, 0) scale(1);
-      }
-      to {
-        transform: translate3d(2%, 1.5%, 0) scale(1.12);
-      }
-    }
-
-    @keyframes floatOrb {
-      from {
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-      to {
-        transform: translate3d(24px, -16px, 0) scale(1.12);
-      }
-    }
-
-    @keyframes ringSpin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
+    @keyframes driftGlow { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 1.5%, 0) scale(1.12); } }
+    @keyframes floatOrb { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(24px, -16px, 0) scale(1.12); } }
+    @keyframes ringSpin { to { transform: rotate(360deg); } }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
     }
   </style>
 </head>
@@ -306,7 +227,7 @@
         <div>
           <p class="section-title text-[10px] text-white/38">NAV</p>
           <h2 class="mt-2 text-2xl font-semibold text-white">مهدی خدابخشی</h2>
-          <p class="mt-2 text-sm leading-7 text-white/55">مسیر سریع برای رفتن به بخش‌های اصلی سایت و ثبت پروژه جدید.</p>
+          <p class="mt-2 text-sm leading-7 text-white/55">مسیر سریع برای رفتن به بخش‌های اصلی سایت.</p>
         </div>
         <button id="sidebarClose" type="button" aria-label="بستن منو" class="glass glass-hover inline-flex h-10 w-10 items-center justify-center rounded-full text-white/85">
           <i data-lucide="x" class="h-5 w-5"></i>
@@ -338,8 +259,9 @@
           <div class="flex justify-center">
             <div class="profile-ring h-44 w-44 sm:h-52 sm:w-52">
               <div class="avatar-shell absolute inset-0 rounded-full bg-[#050507]">
-                <img id="profileImage" src="profile.jpg" alt="عکس پروفایل مهدی خدابخشی" class="absolute inset-3 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] rounded-full opacity-0 transition-opacity duration-500">
-                <div id="profileFallback" class="absolute inset-3 flex items-center justify-center rounded-full bg-white/4 text-4xl font-bold text-white/75 sm:text-5xl">مخ</div>
+                <!-- رفع مشکل عکس: اضافه شدن z-10، حذف opacity-0 و object-cover برای نمایش صحیح -->
+                <img id="profileImage" src="./profile.jpg" alt="عکس پروفایل مهدی خدابخشی" class="absolute inset-3 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] rounded-full object-cover z-10 bg-[#050507]">
+                <div id="profileFallback" class="absolute inset-3 flex items-center justify-center rounded-full bg-white/4 text-4xl font-bold text-white/75 sm:text-5xl z-0">مخ</div>
               </div>
             </div>
           </div>
@@ -529,7 +451,7 @@
     </footer>
   </main>
 
-  <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
+  <audio id="bgMusic" src="./music.mp3" loop preload="auto"></audio>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -569,7 +491,9 @@
         `;
         musicToggle.setAttribute('aria-pressed', String(musicState === 'playing'));
         musicToggle.setAttribute('aria-label', labelMap[musicState]);
-        lucide.createIcons({ root: musicToggle });
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons({ root: musicToggle });
+        }
       }
 
       async function startMusic() {
@@ -635,10 +559,12 @@
         menuToggle.setAttribute('aria-expanded', 'true');
         document.body.classList.add('overflow-hidden');
 
-        gsap.fromTo(sidebar.querySelectorAll('.sidebar-link'),
-          { x: 28, opacity: 0 },
-          { x: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power3.out', clearProps: 'all' }
-        );
+        if (window.gsap) {
+          gsap.fromTo(sidebar.querySelectorAll('.sidebar-link'),
+            { x: 28, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power3.out', clearProps: 'all' }
+          );
+        }
       }
 
       function closeSidebar() {
@@ -675,22 +601,19 @@
         });
       });
 
-      profileImage.addEventListener('load', () => {
-        profileImage.classList.remove('opacity-0');
-        profileFallback.classList.add('opacity-0');
-      });
-
+      // تنظیمات مربوط به عکس پروفایل
       profileImage.addEventListener('error', () => {
-        profileFallback.classList.remove('opacity-0');
+        profileImage.style.display = 'none'; // در صورت لود نشدن عکس پنهان میشود
       });
-
-      if (profileImage.complete && profileImage.naturalWidth > 0) {
-        profileImage.classList.remove('opacity-0');
-        profileFallback.classList.add('opacity-0');
-      }
 
       renderMusicButton();
-      lucide.createIcons();
+      
+      // ساخت آیکون ها توسط Lucide
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      } else {
+        console.error("Lucide script is not loaded properly.");
+      }
 
       window.addEventListener('load', () => {
         if (window.gsap) {
