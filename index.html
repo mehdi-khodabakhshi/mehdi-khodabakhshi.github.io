@@ -338,11 +338,20 @@
           <div class="flex justify-center">
             <div class="profile-ring h-44 w-44 sm:h-52 sm:w-52">
               <div class="avatar-shell absolute inset-0 rounded-full bg-[#050507]">
-                <img id="profileImage" src="profile.jpg" alt="عکس پروفایل مهدی خدابخشی" class="absolute inset-3 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] rounded-full opacity-0 transition-opacity duration-500">
-                <div id="profileFallback" class="absolute inset-3 flex items-center justify-center rounded-full bg-white/4 text-4xl font-bold text-white/75 sm:text-5xl">مخ</div>
-              </div>
-            </div>
-          </div>
+               function showProfileImage() {
+  profileImage.classList.remove('opacity-0');
+  profileFallback.classList.add('opacity-0');
+}
+
+profileImage.addEventListener('load', showProfileImage);
+
+profileImage.addEventListener('error', () => {
+  profileFallback.classList.remove('opacity-0');
+});
+
+if (profileImage.complete && profileImage.naturalWidth > 0) {
+  showProfileImage();
+}
 
           <div class="space-y-4">
             <p class="section-title text-[10px] text-white/40">PERSONAL PORTFOLIO</p>
