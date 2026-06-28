@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#030305" />
-  <meta name="description" content="پرتفولیوی شخصی و بایو-لینک مهدی خدابخشی، مهندس نرم‌افزار با تمرکز بر توسعه وب، UI/UX، لینوکس و رشد دیجیتال." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#030305">
+  <meta name="description" content="پرتفولیوی شخصی و بایو-لینک مهدی خدابخشی، مهندس نرم‌افزار با تمرکز بر توسعه وب، UI/UX، لینوکس و رشد دیجیتال.">
   <title>مهدی خدابخشی | مهندس نرم‌افزار</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <!-- مهم: نسخه UMD برای اینکه lucide.createIcons درست کار کند -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
   <style>
     :root {
@@ -26,7 +24,9 @@
       --muted: rgba(255, 255, 255, 0.64);
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Vazirmatn', 'Poppins', sans-serif;
@@ -66,9 +66,7 @@
       z-index: 0;
     }
 
-    .latin {
-      font-family: 'Poppins', 'Vazirmatn', sans-serif;
-    }
+    .latin { font-family: 'Poppins', 'Vazirmatn', sans-serif; }
 
     .glass {
       background: var(--panel);
@@ -98,36 +96,15 @@
       animation: floatOrb 18s ease-in-out infinite alternate;
     }
 
-    .orb-one {
-      top: 10%;
-      right: 6%;
-      width: 18rem;
-      height: 18rem;
-      background: radial-gradient(circle, rgba(34, 211, 238, 0.24), transparent 68%);
-    }
+    .orb-one { top: 10%; right: 6%; width: 18rem; height: 18rem; background: radial-gradient(circle, rgba(34, 211, 238, 0.24), transparent 68%); }
+    .orb-two { bottom: 18%; left: 4%; width: 20rem; height: 20rem; background: radial-gradient(circle, rgba(168, 85, 247, 0.23), transparent 70%); animation-delay: -6s; }
+    .orb-three { top: 42%; left: 38%; width: 12rem; height: 12rem; background: radial-gradient(circle, rgba(236, 72, 153, 0.18), transparent 72%); animation-delay: -12s; }
 
-    .orb-two {
-      bottom: 18%;
-      left: 4%;
-      width: 20rem;
-      height: 20rem;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.23), transparent 70%);
-      animation-delay: -6s;
-    }
-
-    .orb-three {
-      top: 42%;
-      left: 38%;
-      width: 12rem;
-      height: 12rem;
-      background: radial-gradient(circle, rgba(236, 72, 153, 0.18), transparent 72%);
-      animation-delay: -12s;
-    }
-
+    /* استایل اصلاح شده حلقه تا عکس نچرخد */
     .profile-ring {
-      position: relative;
+      position: absolute;
+      inset: 0;
       border-radius: 9999px;
-      padding: 5px;
       background: conic-gradient(from 180deg, #7c3aed, #06b6d4, #ec4899, #7c3aed);
       animation: ringSpin 20s linear infinite;
       box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 24px 60px rgba(0, 0, 0, 0.42);
@@ -144,22 +121,7 @@
       z-index: -1;
     }
 
-    .avatar-shell {
-      position: relative;
-      border-radius: 9999px;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
-    }
-
-    .avatar-shell img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .glow-text {
-      text-shadow: 0 0 24px rgba(255, 255, 255, 0.18);
-    }
+    .glow-text { text-shadow: 0 0 24px rgba(255, 255, 255, 0.18); }
 
     .social-link {
       position: relative;
@@ -177,19 +139,13 @@
       pointer-events: none;
     }
 
-    .social-link:hover::before {
-      opacity: 1;
-    }
-
+    .social-link:hover::before { opacity: 1; }
     .social-link:hover {
       border-color: color-mix(in srgb, var(--brand) 55%, rgba(255, 255, 255, 0.15));
       box-shadow: 0 0 0 1px color-mix(in srgb, var(--brand) 20%, transparent), 0 22px 45px color-mix(in srgb, var(--brand) 16%, transparent);
     }
 
-    .social-link .social-icon {
-      transition: transform 280ms ease, color 280ms ease;
-    }
-
+    .social-link .social-icon { transition: transform 280ms ease, color 280ms ease; }
     .social-link:hover .social-icon {
       color: var(--brand);
       transform: translateX(-3px) scale(1.04);
@@ -205,25 +161,11 @@
       transform-origin: center;
     }
 
-    .hamburger.is-open .menu-line:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-      width: 1.35rem;
-    }
+    .hamburger.is-open .menu-line:nth-child(1) { transform: translateY(6px) rotate(45deg); width: 1.35rem; }
+    .hamburger.is-open .menu-line:nth-child(2) { opacity: 0; transform: translateX(8px); }
+    .hamburger.is-open .menu-line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); width: 1.35rem; }
 
-    .hamburger.is-open .menu-line:nth-child(2) {
-      opacity: 0;
-      transform: translateX(8px);
-    }
-
-    .hamburger.is-open .menu-line:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-      width: 1.35rem;
-    }
-
-    .sidebar-link {
-      transition: transform 240ms ease, border-color 240ms ease, background 240ms ease, box-shadow 240ms ease;
-    }
-
+    .sidebar-link { transition: transform 240ms ease, border-color 240ms ease, background 240ms ease, box-shadow 240ms ease; }
     .sidebar-link:hover {
       transform: translateX(-4px);
       border-color: rgba(255, 255, 255, 0.18);
@@ -231,39 +173,18 @@
       box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
     }
 
-    .sidebar-shell {
-      box-shadow: -30px 0 80px rgba(0, 0, 0, 0.45);
-    }
+    .sidebar-shell { box-shadow: -30px 0 80px rgba(0, 0, 0, 0.45); }
+    .section-title { letter-spacing: 0.35em; }
 
-    .section-title {
-      letter-spacing: 0.35em;
-    }
-
-    @keyframes driftGlow {
-      from { transform: translate3d(-2%, -1%, 0) scale(1); }
-      to { transform: translate3d(2%, 1.5%, 0) scale(1.12); }
-    }
-
-    @keyframes floatOrb {
-      from { transform: translate3d(0, 0, 0) scale(1); }
-      to { transform: translate3d(24px, -16px, 0) scale(1.12); }
-    }
-
-    @keyframes ringSpin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes driftGlow { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 1.5%, 0) scale(1.12); } }
+    @keyframes floatOrb { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(24px, -16px, 0) scale(1.12); } }
+    @keyframes ringSpin { to { transform: rotate(360deg); } }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
     }
   </style>
 </head>
-
 <body class="scroll-smooth antialiased">
   <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
     <div class="ambient-orb orb-one"></div>
@@ -274,7 +195,10 @@
   <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
     <div class="mx-auto flex max-w-6xl items-center justify-between">
       <button id="musicToggle" type="button" aria-pressed="false" aria-label="موسیقی خاموش است" class="glass glass-hover inline-flex h-11 items-center gap-2 rounded-full px-3 text-sm font-medium text-white/90 sm:px-4">
-        <span id="musicIcon" class="flex items-center justify-center text-white/90" data-lucide="music-2"></span>
+        <span id="musicIcon" class="flex items-center justify-center text-white/90">
+          <!-- آیکون موسیقی پیش‌فرض -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+        </span>
         <span class="hidden sm:inline">موسیقی</span>
       </button>
 
@@ -297,10 +221,10 @@
         <div>
           <p class="section-title text-[10px] text-white/38">NAV</p>
           <h2 class="mt-2 text-2xl font-semibold text-white">مهدی خدابخشی</h2>
-          <p class="mt-2 text-sm leading-7 text-white/55">مسیر سریع برای رفتن به بخش‌های اصلی سایت و ثبت پروژه جدید.</p>
+          <p class="mt-2 text-sm leading-7 text-white/55">مسیر سریع برای رفتن به بخش‌های اصلی سایت.</p>
         </div>
         <button id="sidebarClose" type="button" aria-label="بستن منو" class="glass glass-hover inline-flex h-10 w-10 items-center justify-center rounded-full text-white/85">
-          <i data-lucide="x" class="h-5 w-5"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
         </button>
       </div>
 
@@ -327,23 +251,15 @@
       <div class="mx-auto flex max-w-3xl flex-col items-center gap-8">
         <div data-animate="hero" class="space-y-8">
           <div class="flex justify-center">
-            <div class="profile-ring h-44 w-44 sm:h-52 sm:w-52">
-              <div class="avatar-shell absolute inset-0 rounded-full bg-[#050507]">
-                <img
-                  id="profileImage"
-                  src="./profile.jpg"
-                  alt="عکس پروفایل مهدی خدابخشی"
-                  class="absolute inset-3 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] rounded-full object-cover opacity-0 transition-opacity duration-500"
-                  loading="eager"
-                  decoding="async"
-                  onload="this.classList.remove('opacity-0');document.getElementById('profileFallback').classList.add('opacity-0')"
-                  onerror="document.getElementById('profileFallback').classList.remove('opacity-0')"
-                >
-                <div id="profileFallback" class="absolute inset-3 flex items-center justify-center rounded-full bg-white/4 text-4xl font-bold text-white/75 sm:text-5xl">
-                  مخ
-                </div>
+            
+            <!-- ساختار جدید عکس: حلقه می‌چرخد اما عکس ثابت است -->
+            <div class="relative h-44 w-44 sm:h-52 sm:w-52">
+              <div class="profile-ring"></div>
+              <div class="absolute inset-[6px] rounded-full overflow-hidden bg-[#050507] z-10 border-[3px] border-[#050507]">
+                <img id="profileImage" src="profile.jpg" alt="عکس پروفایل مهدی خدابخشی" class="h-full w-full object-cover">
               </div>
             </div>
+
           </div>
 
           <div class="space-y-4">
@@ -381,12 +297,8 @@
           <a href="https://instagram.com/mhdidiez" target="_blank" rel="noopener noreferrer" style="--brand:#E1306C" class="social-link glass glass-hover flex items-center justify-between gap-4 rounded-3xl border border-white/10 px-4 py-4 sm:px-5">
             <span class="flex min-w-0 flex-1 items-center gap-4 text-right">
               <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/88">
-                <!-- آیکون اینستاگرام: SVG مستقیم -->
-                <svg class="social-icon h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                  <circle cx="12" cy="12" r="4"></circle>
-                  <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"></circle>
-                </svg>
+                <!-- آیکون اینستاگرام -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon h-5 w-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
               </span>
               <span class="min-w-0">
                 <span class="block text-base font-semibold text-white">اینستاگرام</span>
@@ -398,7 +310,8 @@
           <a href="https://t.me/mhdidiez" target="_blank" rel="noopener noreferrer" style="--brand:#2AABEE" class="social-link glass glass-hover flex items-center justify-between gap-4 rounded-3xl border border-white/10 px-4 py-4 sm:px-5">
             <span class="flex min-w-0 flex-1 items-center gap-4 text-right">
               <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/88">
-                <i data-lucide="send" class="social-icon h-5 w-5"></i>
+                <!-- آیکون تلگرام -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon h-5 w-5"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
               </span>
               <span class="min-w-0">
                 <span class="block text-base font-semibold text-white">تلگرام</span>
@@ -410,7 +323,8 @@
           <a href="https://wa.me/989388042626" target="_blank" rel="noopener noreferrer" style="--brand:#25D366" class="social-link glass glass-hover flex items-center justify-between gap-4 rounded-3xl border border-white/10 px-4 py-4 sm:px-5">
             <span class="flex min-w-0 flex-1 items-center gap-4 text-right">
               <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/88">
-                <i data-lucide="message-circle" class="social-icon h-5 w-5"></i>
+                <!-- آیکون واتس‌اپ -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon h-5 w-5"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
               </span>
               <span class="min-w-0">
                 <span class="block text-base font-semibold text-white">واتس‌اپ</span>
@@ -422,10 +336,8 @@
           <a href="https://github.com/mehdi-khodabakhshi" target="_blank" rel="noopener noreferrer" style="--brand:#F5F5F5" class="social-link glass glass-hover flex items-center justify-between gap-4 rounded-3xl border border-white/10 px-4 py-4 sm:px-5">
             <span class="flex min-w-0 flex-1 items-center gap-4 text-right">
               <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/88">
-                <!-- آیکون گیت‌هاب: SVG مستقیم -->
-                <svg class="social-icon h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.755-1.333-1.755-1.089-.744.083-.729.083-.729 1.205.086 1.838 1.236 1.838 1.236 1.07 1.835 2.807 1.305 3.492.998.108-.776.42-1.305.763-1.605-2.665-.305-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.49 11.49 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.652.241 2.873.118 3.176.77.84 1.236 1.911 1.236 3.221 0 4.61-2.804 5.624-5.475 5.922.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .322.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12Z"/>
-                </svg>
+                <!-- آیکون گیت‌هاب -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon h-5 w-5"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
               </span>
               <span class="min-w-0">
                 <span class="block text-base font-semibold text-white">GitHub</span>
@@ -539,7 +451,7 @@
     </footer>
   </main>
 
-  <audio id="bgMusic" src="./music.mp3" loop preload="auto"></audio>
+  <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -551,7 +463,6 @@
       const sidebarClose = document.getElementById('sidebarClose');
       const year = document.getElementById('year');
       const profileImage = document.getElementById('profileImage');
-      const profileFallback = document.getElementById('profileFallback');
 
       year.textContent = new Date().getFullYear();
       audio.volume = 0.65;
@@ -560,10 +471,11 @@
       let firstInteractionHandled = false;
       let sidebarOpen = false;
 
-      const iconMap = {
-        idle: 'music-2',
-        playing: 'volume-2',
-        muted: 'volume-x'
+      // کدهای SVG آیکون‌های دکمه موسیقی (کاملا آفلاین)
+      const iconsSVG = {
+        idle: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>`,
+        playing: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>`,
+        muted: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" x2="17" y1="9" y2="15"></line><line x1="17" x2="23" y1="9" y2="15"></line></svg>`
       };
 
       const labelMap = {
@@ -573,13 +485,9 @@
       };
 
       function renderMusicButton() {
-        musicToggle.innerHTML = `
-          <span class="flex items-center justify-center text-white/90"><i data-lucide="${iconMap[musicState]}"></i></span>
-          <span class="hidden sm:inline">موسیقی</span>
-        `;
+        document.getElementById('musicIcon').innerHTML = iconsSVG[musicState];
         musicToggle.setAttribute('aria-pressed', String(musicState === 'playing'));
         musicToggle.setAttribute('aria-label', labelMap[musicState]);
-        if (window.lucide) lucide.createIcons({ root: musicToggle });
       }
 
       async function startMusic() {
@@ -645,10 +553,12 @@
         menuToggle.setAttribute('aria-expanded', 'true');
         document.body.classList.add('overflow-hidden');
 
-        gsap.fromTo(sidebar.querySelectorAll('.sidebar-link'),
-          { x: 28, opacity: 0 },
-          { x: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power3.out', clearProps: 'all' }
-        );
+        if (window.gsap) {
+          gsap.fromTo(sidebar.querySelectorAll('.sidebar-link'),
+            { x: 28, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power3.out', clearProps: 'all' }
+          );
+        }
       }
 
       function closeSidebar() {
@@ -685,23 +595,10 @@
         });
       });
 
-      // عکس پروفایل
-      profileImage.addEventListener('load', () => {
-        profileImage.classList.remove('opacity-0');
-        profileFallback.classList.add('opacity-0');
-      });
-
+      // مخفی کردن کادر در صورت پیدا نشدن عکس
       profileImage.addEventListener('error', () => {
-        profileFallback.classList.remove('opacity-0');
+        profileImage.style.display = 'none';
       });
-
-      if (profileImage.complete && profileImage.naturalWidth > 0) {
-        profileImage.classList.remove('opacity-0');
-        profileFallback.classList.add('opacity-0');
-      }
-
-      renderMusicButton();
-      if (window.lucide) lucide.createIcons();
 
       window.addEventListener('load', () => {
         if (window.gsap) {
