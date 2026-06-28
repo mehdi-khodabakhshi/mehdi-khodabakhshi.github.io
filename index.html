@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#030305">
-  <meta name="description" content="پرتفولیوی شخصی و بایو-لینک مهدی خدابخشی، مهندس نرم‌افزار با تمرکز بر توسعه وب، UI/UX، لینوکس و رشد دیجیتال.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#030305" />
+  <meta name="description" content="پرتفولیوی شخصی و بایو-لینک مهدی خدابخشی، مهندس نرم‌افزار با تمرکز بر توسعه وب، UI/UX، لینوکس و رشد دیجیتال." />
   <title>مهدی خدابخشی | مهندس نرم‌افزار</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- اسکریپت‌های ضروری -->
-  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <!-- استفاده از jsdelivr به جای unpkg برای جلوگیری از فیلترینگ و لود نشدن آیکون‌ها -->
-  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  <!-- مهم: نسخه UMD برای اینکه lucide.createIcons درست کار کند -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
   <style>
     :root {
@@ -27,9 +26,7 @@
       --muted: rgba(255, 255, 255, 0.64);
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Vazirmatn', 'Poppins', sans-serif;
@@ -69,7 +66,9 @@
       z-index: 0;
     }
 
-    .latin { font-family: 'Poppins', 'Vazirmatn', sans-serif; }
+    .latin {
+      font-family: 'Poppins', 'Vazirmatn', sans-serif;
+    }
 
     .glass {
       background: var(--panel);
@@ -99,9 +98,31 @@
       animation: floatOrb 18s ease-in-out infinite alternate;
     }
 
-    .orb-one { top: 10%; right: 6%; width: 18rem; height: 18rem; background: radial-gradient(circle, rgba(34, 211, 238, 0.24), transparent 68%); }
-    .orb-two { bottom: 18%; left: 4%; width: 20rem; height: 20rem; background: radial-gradient(circle, rgba(168, 85, 247, 0.23), transparent 70%); animation-delay: -6s; }
-    .orb-three { top: 42%; left: 38%; width: 12rem; height: 12rem; background: radial-gradient(circle, rgba(236, 72, 153, 0.18), transparent 72%); animation-delay: -12s; }
+    .orb-one {
+      top: 10%;
+      right: 6%;
+      width: 18rem;
+      height: 18rem;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.24), transparent 68%);
+    }
+
+    .orb-two {
+      bottom: 18%;
+      left: 4%;
+      width: 20rem;
+      height: 20rem;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.23), transparent 70%);
+      animation-delay: -6s;
+    }
+
+    .orb-three {
+      top: 42%;
+      left: 38%;
+      width: 12rem;
+      height: 12rem;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.18), transparent 72%);
+      animation-delay: -12s;
+    }
 
     .profile-ring {
       position: relative;
@@ -130,7 +151,15 @@
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
     }
 
-    .glow-text { text-shadow: 0 0 24px rgba(255, 255, 255, 0.18); }
+    .avatar-shell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .glow-text {
+      text-shadow: 0 0 24px rgba(255, 255, 255, 0.18);
+    }
 
     .social-link {
       position: relative;
@@ -148,13 +177,19 @@
       pointer-events: none;
     }
 
-    .social-link:hover::before { opacity: 1; }
+    .social-link:hover::before {
+      opacity: 1;
+    }
+
     .social-link:hover {
       border-color: color-mix(in srgb, var(--brand) 55%, rgba(255, 255, 255, 0.15));
       box-shadow: 0 0 0 1px color-mix(in srgb, var(--brand) 20%, transparent), 0 22px 45px color-mix(in srgb, var(--brand) 16%, transparent);
     }
 
-    .social-link .social-icon { transition: transform 280ms ease, color 280ms ease; }
+    .social-link .social-icon {
+      transition: transform 280ms ease, color 280ms ease;
+    }
+
     .social-link:hover .social-icon {
       color: var(--brand);
       transform: translateX(-3px) scale(1.04);
@@ -170,11 +205,25 @@
       transform-origin: center;
     }
 
-    .hamburger.is-open .menu-line:nth-child(1) { transform: translateY(6px) rotate(45deg); width: 1.35rem; }
-    .hamburger.is-open .menu-line:nth-child(2) { opacity: 0; transform: translateX(8px); }
-    .hamburger.is-open .menu-line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); width: 1.35rem; }
+    .hamburger.is-open .menu-line:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+      width: 1.35rem;
+    }
 
-    .sidebar-link { transition: transform 240ms ease, border-color 240ms ease, background 240ms ease, box-shadow 240ms ease; }
+    .hamburger.is-open .menu-line:nth-child(2) {
+      opacity: 0;
+      transform: translateX(8px);
+    }
+
+    .hamburger.is-open .menu-line:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+      width: 1.35rem;
+    }
+
+    .sidebar-link {
+      transition: transform 240ms ease, border-color 240ms ease, background 240ms ease, box-shadow 240ms ease;
+    }
+
     .sidebar-link:hover {
       transform: translateX(-4px);
       border-color: rgba(255, 255, 255, 0.18);
@@ -182,18 +231,39 @@
       box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
     }
 
-    .sidebar-shell { box-shadow: -30px 0 80px rgba(0, 0, 0, 0.45); }
-    .section-title { letter-spacing: 0.35em; }
+    .sidebar-shell {
+      box-shadow: -30px 0 80px rgba(0, 0, 0, 0.45);
+    }
 
-    @keyframes driftGlow { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 1.5%, 0) scale(1.12); } }
-    @keyframes floatOrb { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(24px, -16px, 0) scale(1.12); } }
-    @keyframes ringSpin { to { transform: rotate(360deg); } }
+    .section-title {
+      letter-spacing: 0.35em;
+    }
+
+    @keyframes driftGlow {
+      from { transform: translate3d(-2%, -1%, 0) scale(1); }
+      to { transform: translate3d(2%, 1.5%, 0) scale(1.12); }
+    }
+
+    @keyframes floatOrb {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(24px, -16px, 0) scale(1.12); }
+    }
+
+    @keyframes ringSpin {
+      to { transform: rotate(360deg); }
+    }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
 </head>
+
 <body class="scroll-smooth antialiased">
   <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
     <div class="ambient-orb orb-one"></div>
@@ -227,7 +297,7 @@
         <div>
           <p class="section-title text-[10px] text-white/38">NAV</p>
           <h2 class="mt-2 text-2xl font-semibold text-white">مهدی خدابخشی</h2>
-          <p class="mt-2 text-sm leading-7 text-white/55">مسیر سریع برای رفتن به بخش‌های اصلی سایت.</p>
+          <p class="mt-2 text-sm leading-7 text-white/55">مسیر سریع برای رفتن به بخش‌های اصلی سایت و ثبت پروژه جدید.</p>
         </div>
         <button id="sidebarClose" type="button" aria-label="بستن منو" class="glass glass-hover inline-flex h-10 w-10 items-center justify-center rounded-full text-white/85">
           <i data-lucide="x" class="h-5 w-5"></i>
@@ -259,9 +329,19 @@
           <div class="flex justify-center">
             <div class="profile-ring h-44 w-44 sm:h-52 sm:w-52">
               <div class="avatar-shell absolute inset-0 rounded-full bg-[#050507]">
-                <!-- رفع مشکل عکس: اضافه شدن z-10، حذف opacity-0 و object-cover برای نمایش صحیح -->
-                <img id="profileImage" src="./profile.jpg" alt="عکس پروفایل مهدی خدابخشی" class="absolute inset-3 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] rounded-full object-cover z-10 bg-[#050507]">
-                <div id="profileFallback" class="absolute inset-3 flex items-center justify-center rounded-full bg-white/4 text-4xl font-bold text-white/75 sm:text-5xl z-0">مخ</div>
+                <img
+                  id="profileImage"
+                  src="./profile.jpg"
+                  alt="عکس پروفایل مهدی خدابخشی"
+                  class="absolute inset-3 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] rounded-full object-cover opacity-0 transition-opacity duration-500"
+                  loading="eager"
+                  decoding="async"
+                  onload="this.classList.remove('opacity-0');document.getElementById('profileFallback').classList.add('opacity-0')"
+                  onerror="document.getElementById('profileFallback').classList.remove('opacity-0')"
+                >
+                <div id="profileFallback" class="absolute inset-3 flex items-center justify-center rounded-full bg-white/4 text-4xl font-bold text-white/75 sm:text-5xl">
+                  مخ
+                </div>
               </div>
             </div>
           </div>
@@ -301,7 +381,12 @@
           <a href="https://instagram.com/mhdidiez" target="_blank" rel="noopener noreferrer" style="--brand:#E1306C" class="social-link glass glass-hover flex items-center justify-between gap-4 rounded-3xl border border-white/10 px-4 py-4 sm:px-5">
             <span class="flex min-w-0 flex-1 items-center gap-4 text-right">
               <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/88">
-                <i data-lucide="instagram" class="social-icon h-5 w-5"></i>
+                <!-- آیکون اینستاگرام: SVG مستقیم -->
+                <svg class="social-icon h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"></circle>
+                </svg>
               </span>
               <span class="min-w-0">
                 <span class="block text-base font-semibold text-white">اینستاگرام</span>
@@ -337,7 +422,10 @@
           <a href="https://github.com/mehdi-khodabakhshi" target="_blank" rel="noopener noreferrer" style="--brand:#F5F5F5" class="social-link glass glass-hover flex items-center justify-between gap-4 rounded-3xl border border-white/10 px-4 py-4 sm:px-5">
             <span class="flex min-w-0 flex-1 items-center gap-4 text-right">
               <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/88">
-                <i data-lucide="github" class="social-icon h-5 w-5"></i>
+                <!-- آیکون گیت‌هاب: SVG مستقیم -->
+                <svg class="social-icon h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.755-1.333-1.755-1.089-.744.083-.729.083-.729 1.205.086 1.838 1.236 1.838 1.236 1.07 1.835 2.807 1.305 3.492.998.108-.776.42-1.305.763-1.605-2.665-.305-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.49 11.49 0 0 1 3.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.652.241 2.873.118 3.176.77.84 1.236 1.911 1.236 3.221 0 4.61-2.804 5.624-5.475 5.922.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .322.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12Z"/>
+                </svg>
               </span>
               <span class="min-w-0">
                 <span class="block text-base font-semibold text-white">GitHub</span>
@@ -491,9 +579,7 @@
         `;
         musicToggle.setAttribute('aria-pressed', String(musicState === 'playing'));
         musicToggle.setAttribute('aria-label', labelMap[musicState]);
-        if (typeof lucide !== 'undefined') {
-          lucide.createIcons({ root: musicToggle });
-        }
+        if (window.lucide) lucide.createIcons({ root: musicToggle });
       }
 
       async function startMusic() {
@@ -559,12 +645,10 @@
         menuToggle.setAttribute('aria-expanded', 'true');
         document.body.classList.add('overflow-hidden');
 
-        if (window.gsap) {
-          gsap.fromTo(sidebar.querySelectorAll('.sidebar-link'),
-            { x: 28, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power3.out', clearProps: 'all' }
-          );
-        }
+        gsap.fromTo(sidebar.querySelectorAll('.sidebar-link'),
+          { x: 28, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power3.out', clearProps: 'all' }
+        );
       }
 
       function closeSidebar() {
@@ -601,19 +685,23 @@
         });
       });
 
-      // تنظیمات مربوط به عکس پروفایل
-      profileImage.addEventListener('error', () => {
-        profileImage.style.display = 'none'; // در صورت لود نشدن عکس پنهان میشود
+      // عکس پروفایل
+      profileImage.addEventListener('load', () => {
+        profileImage.classList.remove('opacity-0');
+        profileFallback.classList.add('opacity-0');
       });
 
-      renderMusicButton();
-      
-      // ساخت آیکون ها توسط Lucide
-      if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-      } else {
-        console.error("Lucide script is not loaded properly.");
+      profileImage.addEventListener('error', () => {
+        profileFallback.classList.remove('opacity-0');
+      });
+
+      if (profileImage.complete && profileImage.naturalWidth > 0) {
+        profileImage.classList.remove('opacity-0');
+        profileFallback.classList.add('opacity-0');
       }
+
+      renderMusicButton();
+      if (window.lucide) lucide.createIcons();
 
       window.addEventListener('load', () => {
         if (window.gsap) {
